@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Post</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        .header-nav {
+            background: white;
+            padding: 1.5rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            font-weight: 500;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .translate-btn {
+            padding: 0.75rem 1.5rem;
+            background: white;
+            border: 2px solid #667eea;
+            color: #667eea;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .translate-btn:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .article-header {
+            background: white;
+            padding: 3rem 2rem;
+            margin-top: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .article-title {
+            font-size: 3rem;
+            color: #667eea;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .article-meta {
+            display: flex;
+            gap: 1.5rem;
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+        }
+
+        .article-cover {
+            width: 100%;
+            max-height: 500px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .translate-btn {
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .translate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .hero-image {
+            width: 100%;
+            max-height: 500px;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .blog-header {
+            padding: 3rem 0 2rem;
+        }
+
+        .blog-title {
+            font-size: 3rem;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .blog-meta {
+            display: flex;
+            gap: 2rem;
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+        }
+
+        .featured-image {
+            width: 100%;
+            max-height: 500px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .blog-title {
+            font-size: 3rem;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            color: #1a1a1a;
+        }
+
+        .blog-meta {
+            display: flex;
+            gap: 2rem;
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #e9ecef;
+        }
+
+        .translate-btn {
+            padding: 0.6rem 1.2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .translate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            margin-top: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .post-header {
+            max-width: 800px;
+            margin: 3rem auto 2rem;
+            padding: 0 2rem;
+        }
+
+        .post-title {
+            font-size: 3rem;
+            line-height: 1.2;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+        }
+
+        .post-meta {
+            display: flex;
+            gap: 2rem;
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .translate-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: white;
+            border: 2px solid #667eea;
+            color: #667eea;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .translate-btn:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        .post-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem 4rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .post-content p {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            color: #333;
+        }
+
+        .post-content h2 {
+            font-size: 2rem;
+            margin: 2.5rem 0 1rem;
+            color: #1a1a1a;
+        }
+
+        .post-content h3 {
+            font-size: 1.5rem;
+            margin: 2rem 0 1rem;
+            color: #333;
+        }
+
+        .hero-image {
+            width: 100%;
+            max-width: 1200px;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin: 2rem auto;
+            display: block;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        @media (max-width: 768px) {
+            .post-title {
+                font-size: 2rem;
+            }
+
+            .hero-image {
+                height: 300px;
+                border-radius: 0;
+            }
+
+            .post-content p {
+                font-size: 1rem;
+            }
+
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header-nav">
+        <div class="nav-container">
+            <a href="index.html" class="back-btn">← Voltar ao Site</a>
+            <button class="translate-btn" onclick="translateContent()">
+                <span id="translateIcon">🌐</span>
+                <span id="translateText">Translate to English</span>
+            </button>
+        </div>
+    </div>
+
+    <img src="blog/WhatsApp Image 2026-01-13 at 11.39.59 (1).jpeg" alt="Imagem de capa" class="hero-image">
+
+    <div class="post-header">
+        <h1 class="post-title" id="title">Viajar também é um lugar dentro da mente</h1>
+    </div>
+
+    <div class="post-content" id="content">
+        <p><br>Viajar não é apenas mudar de endereço.
+É mudar de ritmo. De olhar. De pensamento.</p>
+
+        <p>Quando nos afastamos da rotina, algo dentro de nós desacelera primeiro. A mente, acostumada ao barulho constante, estranha o silêncio — mas logo aprende a respirar diferente. É nesse espaço que surgem os pensamentos que nunca têm tempo de aparecer. As perguntas esquecidas. As respostas que estavam ali, esperando calma.</p>
+
+
+        <p>A viagem tem esse poder quase invisível: ela reorganiza a mente sem pedir licença. Ao trocar o cenário, trocamos também a forma de perceber a vida. O mar ensina a soltar. A montanha convida ao recolhimento. O caminho desconhecido desperta curiosidade e coragem. Cada lugar toca uma parte diferente de quem somos.</p>
+
+        <p>Longe da pressa, voltamos a escutar o corpo. Dormimos melhor. Comemos com mais presença. Caminhamos sem destino. E, sem perceber, a mente começa a se alinhar ao agora. O excesso vai embora. O essencial permanece.</p>
+
+
+        <p>Viajar é um exercício de desapego mental. É deixar, ainda que por alguns dias, as cobranças, os papéis, as expectativas. É lembrar que somos mais do que tarefas, horários e notificações. Somos experiência.</p>
+
+        <p>Por isso, uma boa viagem não termina quando voltamos para casa. Ela continua no jeito mais leve de pensar, na paciência renovada, na clareza que surge. Algo muda por dentro — e isso ninguém tira.
+
+Viajar cura porque amplia.
+E tudo que amplia a mente, transforma a vida.</p>
+
+
+    </div>
+
+    <script>
+        let isEnglish = false;
+
+        const translations = {
+            pt: {
+                title: "Viajar também é um lugar dentro da mente",
+                content: `<p>Viajar não é apenas mudar de endereço.
+É mudar de ritmo. De olhar. De pensamento.</p>
+
+        <p>Quando nos afastamos da rotina, algo dentro de nós desacelera primeiro. A mente, acostumada ao barulho constante, estranha o silêncio — mas logo aprende a respirar diferente. É nesse espaço que surgem os pensamentos que nunca têm tempo de aparecer. As perguntas esquecidas. As respostas que estavam ali, esperando calma.</p>
+
+
+        <p>A viagem tem esse poder quase invisível: ela reorganiza a mente sem pedir licença. Ao trocar o cenário, trocamos também a forma de perceber a vida. O mar ensina a soltar. A montanha convida ao recolhimento. O caminho desconhecido desperta curiosidade e coragem. Cada lugar toca uma parte diferente de quem somos.</p>
+
+        <p>Longe da pressa, voltamos a escutar o corpo. Dormimos melhor. Comemos com mais presença. Caminhamos sem destino. E, sem perceber, a mente começa a se alinhar ao agora. O excesso vai embora. O essencial permanece.</p>
+
+
+        <p>Viajar é um exercício de desapego mental. É deixar, ainda que por alguns dias, as cobranças, os papéis, as expectativas. É lembrar que somos mais do que tarefas, horários e notificações. Somos experiência.</p>
+
+        <p>Por isso, uma boa viagem não termina quando voltamos para casa. Ela continua no jeito mais leve de pensar, na paciência renovada, na clareza que surge. Algo muda por dentro — e isso ninguém tira.
+
+Viajar cura porque amplia.
+E tudo que amplia a mente, transforma a vida.</p>
+
+    `
+            },
+            en: {
+                title: "Travel is also a place within the mind",
+                content: `<p>STraveling is not just changing locations.
+It’s changing rhythm. Perspective. Thought.</p>
+
+        <p>When we step away from routine, something inside us slows down first. The mind, used to constant noise, feels strange in the silence — but soon learns how to breathe differently. In that space, thoughts finally have room to surface. Forgotten questions. Answers that were always there, waiting for calm.</p>
+
+
+        <p>Travel has this almost invisible power: it reorganizes the mind without asking permission. By changing the scenery, we also change how we perceive life. The ocean teaches us to let go. The mountains invite introspection. Unknown paths awaken curiosity and courage. Each place touches a different part of who we are.</p>
+
+        <p>Away from urgency, we begin listening to the body again. We sleep better. Eat with presence. Walk without destination. And without noticing, the mind aligns itself with the present moment. The excess fades. What’s essential remains.</p>
+
+
+
+        <p>Travel is an exercise in mental detachment. It’s allowing ourselves — even for a few days — to release demands, roles, and expectations. It’s remembering that we are more than tasks, schedules, and notifications. We are experience.</p>
+
+        <p>That’s why a meaningful trip doesn’t end when we return home. It continues in lighter thoughts, renewed patience, and newfound clarity. Something shifts within — and that stays.
+
+Travel heals because it expands.
+And anything that expands the mind, transforms life.</p>
+
+        `
+            }
+        };
+
+        function translateContent() {
+            isEnglish = !isEnglish;
+            const lang = isEnglish ? 'en' : 'pt';
+            
+            document.getElementById('title').textContent = translations[lang].title;
+            document.getElementById('content').innerHTML = translations[lang].content;
+            document.getElementById('translateText').textContent = isEnglish ? 'Traduzir para Português' : 'Translate to English';
+        }
+    </script>
+</body>
+</html>

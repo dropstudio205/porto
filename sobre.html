@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <title>Nossa história</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --azul-profundo: #000985;
+            --dourado-claro: #f5cc00;
+            --branco: #ffffff;
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            font-weight: 300;
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 10000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 80px;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--azul-profundo);
+            text-decoration: none;
+        }
+
+        .nav-desktop {
+            display: flex;
+            gap: 32px;
+        }
+
+        .nav-link {
+            position: relative;
+            font-size: 14px;
+            font-weight: 400;
+            color: var(--azul-profundo);
+            text-decoration: none;
+        }
+
+        .nav-link::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -6px;
+            width: 0;
+            height: 2px;
+            background: var(--dourado-claro);
+            transition: width 0.3s;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .icon-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #f2f2f2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--azul-profundo);
+            text-decoration: none;
+        }
+
+        .lang-switch {
+            position: relative;
+            display: flex;
+            background: #f1f1f1;
+            border-radius: 999px;
+            padding: 4px;
+            width: 120px;
+            height: 36px;
+        }
+
+        .lang-option {
+            flex: 1;
+            z-index: 2;
+            border: none;
+            background: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            color: #7a7a7a;
+            transition: color 0.25s;
+        }
+
+        .lang-option .country {
+            font-size: 8px;
+            font-weight: 600;
+        }
+
+        .lang-option .lang {
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .lang-option.active {
+            color: #ffffff;
+        }
+
+        .lang-slider {
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            width: calc(50% - 2px);
+            height: 28px;
+            background: var(--azul-profundo);
+            border-radius: 999px;
+            transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1;
+        }
+
+        .lang-slider.slide-right {
+            transform: translateX(100%);
+        }
+
+        .menu-btn {
+            display: none;
+            font-size: 22px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--azul-profundo);
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 80px;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            max-height: 0;
+            transition: max-height 0.35s ease;
+            background: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 9999;
+        }
+
+        .mobile-menu.active {
+            max-height: 400px;
+        }
+
+        .mobile-nav {
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .mobile-nav a {
+            font-size: 16px;
+            font-weight: 400;
+            color: #666;
+            text-decoration: none;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #eee;
+        }
+
+        /* Page Hero */
+        .page-hero {
+            margin-top: 80px;
+            padding: 80px 20px 60px;
+            background: linear-gradient(135deg, #f8f9ff 0%, #fff 100%);
+            text-align: center;
+        }
+
+        .page-hero h1 {
+            font-family: var(--font-heading);
+            font-size: clamp(42px, 6vw, 64px);
+            font-weight: 700;
+            color: var(--azul-profundo);
+            margin-bottom: 20px;
+        }
+
+        .page-hero .subtitle {
+            font-size: clamp(16px, 2.5vw, 20px);
+            font-weight: 300;
+            color: #555;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* Story Section */
+        .story-section {
+            padding: 100px 20px;
+        }
+
+        .story-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            margin-bottom: 100px;
+        }
+
+        .story-grid.reverse {
+            direction: rtl;
+        }
+
+        .story-grid.reverse>* {
+            direction: ltr;
+        }
+
+        .story-image {
+            position: relative;
+        }
+
+        .story-image img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .story-image::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            width: 100%;
+            height: 100%;
+            border: 3px solid var(--dourado-claro);
+            border-radius: 20px;
+            z-index: -1;
+        }
+
+        .story-content h2 {
+            font-family: var(--font-heading);
+            font-size: clamp(32px, 4vw, 42px);
+            font-weight: 700;
+            color: var(--azul-profundo);
+            margin-bottom: 25px;
+            line-height: 1.3;
+        }
+
+        .story-content p {
+            font-size: 16px;
+            font-weight: 300;
+            line-height: 1.9;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .story-content .highlight {
+            font-style: italic;
+            color: var(--azul-profundo);
+            font-weight: 400;
+            font-size: 18px;
+            margin: 30px 0;
+            padding-left: 20px;
+            border-left: 3px solid var(--dourado-claro);
+        }
+
+        /* Timeline */
+        .timeline-section {
+            padding: 80px 20px;
+            background: #f8f8f8;
+        }
+
+        .timeline-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .timeline-header h2 {
+            font-family: var(--font-heading);
+            font-size: clamp(36px, 5vw, 48px);
+            font-weight: 700;
+            color: var(--azul-profundo);
+            margin-bottom: 15px;
+        }
+
+        .timeline-header p {
+            font-size: 16px;
+            font-weight: 300;
+            color: #555;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--dourado-claro) 0%, var(--azul-profundo) 100%);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-content {
+            flex: 1;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .timeline-year {
+            font-family: var(--font-heading);
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--dourado-claro);
+            margin-bottom: 10px;
+        }
+
+        .timeline-content h3 {
+            font-family: var(--font-heading);
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--azul-profundo);
+            margin-bottom: 12px;
+        }
+
+        .timeline-content p {
+            font-size: 15px;
+            font-weight: 300;
+            line-height: 1.7;
+            color: #555;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            top: 30px;
+            width: 20px;
+            height: 20px;
+            background: var(--dourado-claro);
+            border: 4px solid white;
+            border-radius: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 0 4px rgba(245, 204, 0, 0.2);
+        }
+
+        /* Values Section */
+        .values-section {
+            padding: 100px 20px;
+        }
+
+        .values-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 80px;
+        }
+
+        .values-intro h2 {
+            font-family: var(--font-heading);
+            font-size: clamp(36px, 5vw, 48px);
+            font-weight: 700;
+            color: var(--azul-profundo);
+            margin-bottom: 20px;
+        }
+
+        .values-intro p {
+            font-size: 16px;
+            font-weight: 300;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+        }
+
+        .value-card {
+            text-align: center;
+            padding: 40px 30px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+            transition: transform 0.3s;
+        }
+
+        .value-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .value-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 25px;
+            background: transparent;
+            border: 2px solid var(--dourado-claro);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .value-icon svg {
+            width: 40px;
+            height: 40px;
+            stroke: var(--dourado-claro);
+            fill: none;
+            stroke-width: 1.5;
+        }
+
+        .value-card h3 {
+            font-family: var(--font-heading);
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--azul-profundo);
+            margin-bottom: 15px;
+        }
+
+        .value-card p {
+            font-size: 14px;
+            font-weight: 300;
+            line-height: 1.7;
+            color: #555;
+        }
+
+        /* Family Section */
+        .family-section {
+            padding: 100px 20px;
+            background: linear-gradient(135deg, rgba(0, 9, 133, 0.03) 0%, rgba(245, 204, 0, 0.05) 100%);
+        }
+
+        .family-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .family-photo {
+            width: 100%;
+            max-width: 600px;
+            height: 400px;
+            margin: 0 auto 40px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .family-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .family-content h2 {
+            font-family: var(--font-heading);
+            font-size: clamp(36px, 5vw, 48px);
+            font-weight: 700;
+            color: var(--azul-profundo);
+            margin-bottom: 30px;
+        }
+
+        .family-content p {
+            font-size: 18px;
+            font-weight: 300;
+            line-height: 1.9;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .family-signature {
+            font-family: var(--font-heading);
+            font-size: 24px;
+            font-style: italic;
+            color: var(--dourado-claro);
+            margin-top: 40px;
+        }
+
+        /* Footer */
+        .footer {
+            background: #0b1a8f;
+            color: #ffffff;
+            padding: 80px 60px 30px;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer h4 {
+            font-size: 20px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .footer-line {
+            display: block;
+            width: 40px;
+            height: 2px;
+            background: #f5cc00;
+            margin-bottom: 20px;
+        }
+
+        .footer p {
+            font-size: 15px;
+            line-height: 1.7;
+            opacity: 0.9;
+        }
+
+        .footer-info p {
+            margin-bottom: 10px;
+        }
+
+        .footer-col i {
+            margin-right: 8px;
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            margin-top: 60px;
+            padding-top: 20px;
+            text-align: center;
+            font-size: 13px;
+            opacity: 0.8;
+        }
+
+        /* WhatsApp */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 56px;
+            height: 56px;
+            background: #25d366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            z-index: 999;
+            transition: transform 0.3s;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+
+        .whatsapp-icon {
+            width: 28px;
+            height: 28px;
+            fill: white;
+        }
+
+        @media (max-width: 900px) {
+            .nav-desktop {
+                display: none;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+
+            .story-grid {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+
+            .story-grid.reverse {
+                direction: ltr;
+            }
+
+            .story-image::before {
+                top: -15px;
+                left: -15px;
+            }
+
+            .timeline::before {
+                left: 30px;
+            }
+
+            .timeline-item {
+                flex-direction: column !important;
+                padding-left: 60px;
+            }
+
+            .timeline-dot {
+                left: 30px;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .footer-line {
+                margin: 10px auto 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="index.html" class="logo">Porto Betarello</a>
+                <nav class="nav-desktop">
+                    <a href="index.html" class="nav-link" data-pt="Início" data-en="Home">Início</a>
+                    <a href="sobre.html" class="nav-link" data-pt="Nossa história" data-en="Our story">Nossa
+                        história</a>
+                    <a href="refugios.html" class="nav-link" data-pt="Refúgios" data-en="Retreats">Refúgio</a>
+                    <a href="dicas.html" class="nav-link" data-pt="Dicas da família" data-en="Family Tips">Dicas</a>
+                    <a href="contato.html" class="nav-link" data-pt="Contato" data-en="Contact">Contato</a>
+                </nav>
+                <div class="header-actions">
+                    <a href="https://instagram.com/portobetarello" target="_blank" class="icon-btn">
+                        <svg viewBox="0 0 24 24" width="16" height="16">
+                            <path fill="currentColor"
+                                d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm10 2c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3h10zm-5 3a5 5 0 100 10 5 5 0 000-10zm0 2a3 3 0 110 6 3 3 0 010-6zm4.8-.9a1.1 1.1 0 11-2.2 0 1.1 1.1 0 012.2 0z" />
+                        </svg>
+                    </a>
+                    <div class="lang-switch">
+                        <button class="lang-option active" data-lang="pt">
+                            <span class="country">BR</span>
+                            <span class="lang">PT</span>
+                        </button>
+                        <button class="lang-option" data-lang="en">
+                            <span class="country">GB</span>
+                            <span class="lang">EN</span>
+                        </button>
+                        <span class="lang-slider"></span>
+                    </div>
+                    <button class="menu-btn" id="menuToggle">☰</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <nav class="mobile-nav">
+            <a href="index.html" data-pt="Início" data-en="Home">Início</a>
+            <a href="sobre.html" data-pt="Nossa história" data-en="Our story">Nossa história</a>
+            <a href="refugios.html" data-pt="Refúgios" data-en="Retreats">Refúgio</a>
+            <a href="dicas.html" data-pt="Dicas da família" data-en="Family Tips">Dicas</a>
+            <a href="contato.html" data-pt="Contato" data-en="Contact">Contato</a>
+        </nav>
+    </div>
+
+    <section class="page-hero">
+        <h1 data-pt="Nossa História" data-en="Our Story">Nossa História</h1>
+        <p class="subtitle"
+            data-pt="Mais do que refúgios, compartilhamos gerações de amor pela hospitalidade e pela arte de fazer cada hóspede se sentir em casa."
+            data-en="More than retreats, we share generations of love for hospitality and the art of making every guest feel at home.">
+            Mais do que refúgios, compartilhamos gerações de amor pela hospitalidade e pela arte de fazer cada hóspede
+            se sentir em casa.</p>
+    </section>
+
+    <section class="story-section">
+        <div class="container">
+            <div class="story-grid">
+                <div class="story-image">
+                    <img src="história/WhatsApp Image 2025-12-14 at 23.28.28 (2).jpeg" alt="Casa de família">
+                </div>
+                <div class="story-content">
+                    <h2 data-pt="Betarello" data-en="Betarello">Betarello</h2>
+                    <p data-pt="O nome Porto Betarello carrega, em cada sílaba, a alma da minha família.
+Porto, porque somos abrigo. Somos o lugar de retorno quando o mundo pesa, quando o coração pede colo, quando a vida merece ser celebrada. Aqui, o afeto é presença constante, nunca exceção.
+
+Betarello nasce da nossa descendência italiana e traz consigo a alegria que transborda, o riso fácil e o amor profundo pela boa comida. Como bons italianos, celebramos a vida ao redor da mesa, em conversas longas, taças que se enchem devagar, sabores que se compartilham e memórias que permanecem."
+                        data-en="The name Porto Betarello carries, in every syllable, the soul of my family.
+Porto, because we are a harbor. We are the place you return to when the world feels heavy, when the heart asks for comfort, when life deserves to be celebrated. Here, affection is a constant presence, never an exception.
+
+Betarello is born from our Italian heritage and brings with it overflowing joy, easy laughter, and a deep love for good food. Like true Italians, we celebrate life around the table, in long conversations, slowly filled glasses, shared flavors, and memories that linger.">
+                        O nome Porto Betarello carrega, em cada sílaba, a alma da minha família.
+                        Porto, porque somos abrigo. Somos o lugar de retorno quando o mundo pesa, quando o coração pede
+                        colo, quando a vida merece ser celebrada. Aqui, o afeto é presença constante, nunca exceção.
+
+                        Betarello nasce da nossa descendência italiana e traz consigo a alegria que transborda, o riso
+                        fácil e o amor profundo pela boa comida. Como bons italianos, celebramos a vida ao redor da
+                        mesa, em conversas longas, taças que se enchem devagar, sabores que se compartilham e memórias
+                        que permanecem.</p>
+
+                    <p class="highlight"
+                        data-pt="&quot;No nome Porto também vive a nossa ancestralidade. Ele honra os passos de quem veio antes de nós, aqueles que construíram nossa história com trabalho, coragem e afeto, abrindo caminhos para que hoje pudéssemos existir, sonhar e acolher.&quot;"
+                        data-en="&quot;Within the name Porto also lives our ancestry. It honors the footsteps of those who came before us, those who built our story with hard work, courage, and affection, opening paths so that today we could exist, dream, and welcome.&quot;">
+                        No nome Porto também vive a nossa ancestralidade. Ele honra os passos de quem veio antes de nós,
+                        aqueles que construíram nossa história com trabalho, coragem e afeto, abrindo caminhos para que
+                        hoje pudéssemos existir, sonhar e acolher.</p>
+                </div>
+            </div>
+
+            <div class="story-grid reverse">
+                <div class="story-image">
+                    <img src="história/WhatsApp Image 2025-12-14 at 23.28.27 (6).jpeg" alt="Interior aconchegante">
+                </div>
+                <div class="story-content">
+                    <h2 data-pt="Risos e estilo de vida" data-en="Laughter and lifestyle
+                    ">Risos e estilo de vida</h2>
+                    <p data-pt="Nossa família carrega uma energia rara — daquelas que transformam os lugares por onde passam. Onde chegamos, a alegria se instala sem pedir licença. O riso se espalha, as piadas surgem naturalmente, e essa leveza abraça pessoas e ambientes.
+
+                    Somos, acima de tudo, aventureiros de alma. Amamos encontrar pessoas, criar vínculos, descobrir novos caminhos e, às vezes, nos perder de propósito. A natureza é nosso refúgio favorito, o cenário onde nos sentimos inteiros.
+
+                    Nossos dons se revelam na convivência. Cozinhar é um gesto coletivo, quase sagrado: todos vão para a cozinha. A anfitriã da casa, porém, tem um talento especial — seu arroz com feijão é daqueles que aquecem o corpo e a alma. Não somos do Nordeste, mas a farinha nunca falta, porque carinho também se serve no prato."
+                        data-en="Our family carries a rare energy — the kind that transforms every place it passes through. Wherever we arrive, joy settles in without asking permission. Laughter spreads, jokes come naturally, and this lightness embraces both people and spaces.
+
+                    Above all, we are adventurers at heart. We love meeting people, building bonds, discovering new paths, and sometimes getting lost on purpose. Nature is our favorite refuge, the setting where we feel whole.
+
+                    Our gifts reveal themselves in togetherness. Cooking is a collective, almost sacred act: everyone gathers in the kitchen. The hostess of the house, however, has a special talent — her rice and beans are the kind that warm both body and soul. We are not from the Northeast, but flour is never missing, because care is also served on a plate.">
+                        Nossa família carrega uma energia rara — daquelas que transformam os lugares por onde passam.
+                        Onde chegamos, a alegria se instala sem pedir licença. O riso se espalha, as piadas surgem
+                        naturalmente, e essa leveza abraça pessoas e ambientes.
+
+                        Somos, acima de tudo, aventureiros de alma. Amamos encontrar pessoas, criar vínculos, descobrir
+                        novos caminhos e, às vezes, nos perder de propósito. A natureza é nosso refúgio favorito, o
+                        cenário onde nos sentimos inteiros.
+
+                        Nossos dons se revelam na convivência. Cozinhar é um gesto coletivo, quase sagrado: todos vão
+                        para a cozinha. A anfitriã da casa, porém, tem um talento especial — seu arroz com feijão é
+                        daqueles que aquecem o corpo e a alma. Não somos do Nordeste, mas a farinha nunca falta, porque
+                        carinho também se serve no prato.</p>
+                    <p class="highlight"
+                        data-pt="&quot;Plantar é outro traço que nos define. Catamos mudinhas, clonamos plantas, espalhamos vida por onde passamos. E, como bons descendentes de italianos, cultivamos longas horas à mesa, entre comida, bebida e boas conversas — talvez o ritual mais amado dessa família.&quot;"
+                        data-en="&quot;Planting is another trait that defines us. We gather little seedlings, clone plants, and spread life wherever we go. And, as good descendants of Italians, we cultivate long hours around the table, among food, drinks, and good conversations — perhaps the most beloved ritual of this family.&quot;">
+                        Plantar é outro traço que nos define. Catamos mudinhas, clonamos plantas, espalhamos vida por
+                        onde passamos. E, como bons descendentes de italianos, cultivamos longas horas à mesa, entre
+                        comida, bebida e boas conversas — talvez o ritual mais amado dessa família.</p>
+                </div>
+            </div>
+        </div>
+        </div>
+
+        <div class="container">
+            <div class="story-grid">
+            <div class="story-image">
+                <img src="história/WhatsApp Image 2026-01-13 at 11.12.59.jpeg" alt="Casa de família">
+            </div>
+            <div class="story-content">
+                <h2 data-pt="Café, vinho e alegria" data-en="Coffee, wine, and joy
+                ">Café, vinho e alegria</h2>
+                <p data-pt="Se quiser saber onde me encontrar, é simples: provavelmente estarei à mesa da casa dos meus pais, saboreando um café, um vinho, uma cachaça ou um suco feito com todas as frutas disponíveis, cercada de risadas, histórias e amor.
+
+                Em nossos refúgios, buscamos preservar e compartilhar essa mesma energia e leveza. Criamos espaços onde cada hóspede possa sentir, de forma genuína, o calor, a alegria e o acolhimento que nos acompanham. Lugares que convidam a desacelerar, sorrir, respirar fundo e viver o simples — que é, quase sempre, o mais inesquecível.
+
+                Nossa família deseja deixar como herança essa marca especial: um porto de chegada, de descanso e de reconexão com o bem-estar."
+                    data-en="If you want to know where to find me, it’s simple: I’ll probably be at my parents’ table, savoring a coffee, a glass of wine, some cachaça, or a juice made from every fruit available, surrounded by laughter, stories, and love.
+
+                In our retreats, we seek to preserve and share this same energy and lightness. We create spaces where every guest can genuinely feel the warmth, joy, and welcome that follow us. Places that invite you to slow down, smile, take a deep breath, and live the simple things — which are, more often than not, the most unforgettable.
+
+                 Our family wishes to leave this special mark as a legacy: a harbor of arrival, rest, and reconnection with well-being.
+                ">
+                    Se quiser saber onde me encontrar, é simples: provavelmente estarei à mesa da casa dos meus pais,
+                    saboreando um café, um vinho, uma cachaça ou um suco feito com todas as frutas disponíveis, cercada
+                    de risadas, histórias e amor.
+
+                    Em nossos refúgios, buscamos preservar e compartilhar essa mesma energia e leveza. Criamos espaços
+                    onde cada hóspede possa sentir, de forma genuína, o calor, a alegria e o acolhimento que nos
+                    acompanham. Lugares que convidam a desacelerar, sorrir, respirar fundo e viver o simples — que é,
+                    quase sempre, o mais inesquecível.
+
+                    Nossa família deseja deixar como herança essa marca especial: um porto de chegada, de descanso e de
+                    reconexão com o bem-estar.</p>
+
+                <p class="highlight" data-pt="&quot;Seja leve.
+                Ria conosco.&quot;" data-en="&quot;Be light.
+                Laugh with us.
+                 &quot;">
+                    Seja leve.
+                    Ria conosco.</p>
+            </div>
+        </div>
+
+        
+    </section>
+
+    <section class="timeline-section">
+        <div class="container">
+            <div class="timeline-header">
+                <h2 data-pt="Nossa Jornada" data-en="Our Journey">Nossa Jornada</h2>
+                <p data-pt="Nosso primeiro refúgio nasceu de um gesto de amor." data-en="Our first retreat was born from an act of love.
+">
+                    Nosso primeiro refúgio nasceu de um gesto de amor.</p>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">¨
+                        </div>
+                        <h3 data-pt="Da generosidade dos nossos pais, que nos presentearam com moradas" data-en="From the generosity of our parents, who gifted us with homes.
+">Da generosidade dos nossos pais, que nos presentearam com moradas</h3>
+                        <p data-pt="Uma para cada filha — como quem planta sementes confiando no florescer. Foi nesse chão de afeto que tudo começou."
+                            data-en="One for each daughter — like planting seeds while trusting in their bloom. It was on this ground of affection that everything began.
+">
+                            Uma para cada filha — como quem planta sementes confiando no florescer. Foi nesse chão de
+                            afeto que tudo começou.</p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">¨</div>
+                        <h3 data-pt="Em 2015, essas casas passaram a acolher não apenas sonhos..." data-en="In 2015, these homes began to welcome not only dreams…
+">Expansão para o
+                            Interior</h3>
+                        <p data-pt=" mas também amigos e família. Portas abertas, mesas postas, risos espalhados. Sem perceber, o lar já havia se transformado em refúgio."
+                            data-en="but also friends and family. Open doors, set tables, laughter everywhere. Without realizing it, the home had already become a retreat.
+">
+                            Em 2015, essas casas passaram a acolher não apenas sonhos...</p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">¨</div>
+                        <h3 data-pt="Dali surgiu o desejo de ir além" data-en="From there, the desire to go further was born.
+">Reconhecimento</h3>
+                        <p data-pt=" Criar espaços onde a nossa criatividade pudesse se expressar livremente, onde cada detalhe carregasse intenção, beleza e alma. Refúgios que contassem histórias, que abraçassem quem chega e convidassem a ficar."
+                            data-en="To create spaces where our creativity could express itself freely, where every detail carried intention, beauty, and soul. Retreats that told stories, embraced those who arrived, and invited them to stay.
+">
+                            Dali surgiu o desejo de ir além</p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">¨</div>
+                        <h3 data-pt="A essência de tudo está na união entre irmãs" data-en="The essence of everything lies in the bond between sisters.
+">Porto Betarello Hoje</h3>
+                        <p data-pt="Somos diferentes — e é justamente aí que mora a magia. Nossas diferenças não competem; elas se encontram, se completam e se transformam em harmonia. O resultado é uma estética sensível, um cuidado minucioso e um bom gosto que encanta sem esforço, daqueles que tiram o fôlego e aquecem o coração.
+
+Assim nasceram nossos refúgios: feitos de amor, herança, criatividade e laços que o tempo só fortalece." data-en="We are different — and that is exactly where the magic lives. Our differences don’t compete; they meet, complement one another, and transform into harmony. The result is a sensitive aesthetic, meticulous care, and an effortless good taste — the kind that takes your breath away and warms the heart.
+
+This is how our retreats were born: made of love, heritage, creativity, and bonds that time only strengthens.">
+                            A essência de tudo está na união entre irmãs</p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="values-section">
+        <div class="container">
+            <div class="values-intro">
+                <h2 data-pt="O que nos move" data-en="What moves us">O que nos move</h2>
+                <p data-pt="Valores que carregamos em cada detalhe, em cada interação, em cada momento compartilhado com nossos hóspedes."
+                    data-en="Values we carry in every detail, in every interaction, in every moment shared with our guests.">
+                    Valores que carregamos em cada detalhe, em cada interação, em cada momento compartilhado com nossos
+                    hóspedes.</p>
+            </div>
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                            <polyline points="9 22 9 12 15 12 15 22" />
+                        </svg>
+                    </div>
+                    <h3 data-pt="Acolhimento" data-en="Welcome">Acolhimento</h3>
+                    <p data-pt="Tratamos cada hóspede como família, criando um ambiente onde todos se sentem verdadeiramente em casa."
+                        data-en="We treat each guest as family, creating an environment where everyone feels truly at home.">
+                        Tratamos cada hóspede como família, criando um ambiente onde todos se sentem verdadeiramente em
+                        casa.</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                            <path d="M2 17l10 5 10-5M2 12l10 5 10-5" />
+                        </svg>
+                    </div>
+                    <h3 data-pt="Conexão" data-en="Connection">Conexão</h3>
+                    <p data-pt="Facilitamos momentos de reconexão - com a natureza, com quem se ama e consigo mesmo."
+                        data-en="We facilitate moments of reconnection - with nature, with loved ones and with yourself.">
+                        Facilitamos momentos de reconexão - com a natureza, com quem se ama e consigo mesmo.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path
+                                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                        </svg>
+                    </div>
+                    <h3 data-pt="Autenticidade" data-en="Authenticity">Autenticidade</h3>
+                    <p data-pt="Não seguimos tendências, seguimos nosso coração e a tradição de hospitalidade da nossa família."
+                        data-en="We don't follow trends, we follow our hearts and our family's hospitality tradition.">
+                        Não seguimos tendências, seguimos nosso coração e a tradição de hospitalidade da nossa família.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="family-section">
+        <div class="container">
+            <div class="family-content">
+                <div class="family-photo">
+                    <img src="história/WhatsApp Image 2026-01-13 at 11.21.08.jpeg"
+                        alt="Família Betarello">
+                </div>
+                <h2 data-pt="Raízes que Conectam" data-en="Roots That Connect">Raízes que Conectam</h2>
+                <p data-pt="Nossas raízes não nos prendem — elas nos sustentam.
+São elas que nos lembram de quem somos, de onde viemos e para onde podemos crescer. No Porto Betarello, honramos essas raízes como pontes invisíveis entre passado, presente e futuro.
+
+Carregamos a ancestralidade como um sussurro constante: os passos de quem veio antes, as mãos que plantaram, cozinharam, acolheram e sonharam para que hoje pudéssemos existir. Cada história vivida se transforma em aprendizado, cada memória em força, cada gesto simples em presença."
+                    data-en="Our roots do not hold us back — they sustain us.
+They remind us of who we are, where we come from, and how far we can grow. At Porto Betarello, we honor these roots as invisible bridges between past, present, and future.
+
+We carry our ancestry like a constant whisper: the footsteps of those who came before, the hands that planted, cooked, welcomed, and dreamed so that today we could exist. Every lived story becomes learning, every memory becomes strength, every simple gesture becomes presence.">
+                    Raízes que Conectam</p>
+                <p data-pt="Acreditamos que a verdadeira evolução espiritual nasce do encontro — com a natureza, com o outro e consigo mesmo. Assim como as plantas que cultivamos, crescemos em silêncio, respeitando o tempo, o solo e a luz. Evoluir é permitir-se enraizar para então expandir.
+
+Aqui, o acolhimento é um ato sagrado. A mesa compartilhada, o riso solto, o caminhar sem pressa e o descanso profundo são convites à reconexão. Criamos espaços onde o corpo desacelera, a mente silencia e o espírito encontra espaço para respirar.
+
+Nossos refúgios são portos de retorno à essência. Lugares onde a leveza cura, a simplicidade ensina e a alegria eleva. Onde cada hóspede é convidado a soltar o que pesa e levar consigo apenas o que nutre.
+
+Porque quando honramos nossas raízes, despertamos a consciência.
+E quando nos conectamos de verdade, evoluímos." data-en="We believe that true spiritual evolution is born from connection — with nature, with others, and with oneself. Like the plants we cultivate, we grow in silence, respecting time, soil, and light. To evolve is to allow yourself to take root, and then to expand.
+
+Here, hospitality is a sacred act. The shared table, free laughter, unhurried walks, and deep rest are invitations to reconnection. We create spaces where the body slows down, the mind quiets, and the spirit finds room to breathe.
+
+Our retreats are harbors of return to essence. Places where lightness heals, simplicity teaches, and joy elevates. Where each guest is invited to release what weighs them down and carry with them only what nourishes.
+
+Because when we honor our roots, we awaken awareness.
+And when we truly connect, we evolve.">
+                    Acreditamos que a verdadeira evolução espiritual nasce do encontro — com a natureza, com o outro e
+                    consigo mesmo. Assim como as plantas que cultivamos, crescemos em silêncio, respeitando o tempo, o
+                    solo e a luz. Evoluir é permitir-se enraizar para então expandir.
+
+                    Aqui, o acolhimento é um ato sagrado. A mesa compartilhada, o riso solto, o caminhar sem pressa e o
+                    descanso profundo são convites à reconexão. Criamos espaços onde o corpo desacelera, a mente
+                    silencia e o espírito encontra espaço para respirar.
+
+                    Nossos refúgios são portos de retorno à essência. Lugares onde a leveza cura, a simplicidade ensina
+                    e a alegria eleva. Onde cada hóspede é convidado a soltar o que pesa e levar consigo apenas o que
+                    nutre.
+
+                    Porque quando honramos nossas raízes, despertamos a consciência.
+                    E quando nos conectamos de verdade, evoluímos.</p>
+
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="family-content">
+
+                <h2 data-pt="Do Sonho a Realidade" data-en="From Dream to Reality">Do Sonho a Realidade</h2>
+                <p data-pt="Todo sonho nasce em silêncio — primeiro como desejo, depois como esperança, até criar coragem para se tornar caminho. O nosso começou assim: com a vontade profunda de criar refúgios onde o tempo desacelera, a alma repousa e a vida pode ser sentida com mais presença.
+
+Sonhávamos com lugares perfeitos para férias vividas de verdade. Refúgios à beira do mar, onde o som das ondas embala os dias. Abrigos nas montanhas, cercados de verde, neblina e silêncio. E também destinos além das fronteiras, onde novas culturas ampliam o olhar e o coração. Lugares escolhidos não apenas pela beleza, mas pela energia que acolhe e transforma.
+
+Hoje, esse sonho ganhou forma. Tornou-se realidade. Cada refúgio carrega nossa história, nossas raízes, nossa alegria e a essência de um porto seguro. São espaços criados com intenção, cuidado e afeto — pensados para receber, proteger e inspirar.
+
+Agora, queremos dividir essa conquista com você. Que nossos refúgios sejam cenário para suas pausas, seus encontros e suas celebrações. Que você e aqueles que ama possam viver, conosco, o que um dia foi apenas um sonho e hoje é um convite aberto à leveza, ao descanso e à conexão."
+                    data-en="Every dream is born in silence — first as a desire, then as hope, until it gathers the courage to become a path. Ours began this way: with a deep wish to create retreats where time slows down, the soul rests, and life can be felt with greater presence.
+
+We dreamed of places made for truly lived vacations. Retreats by the sea, where the sound of the waves cradles the days. Shelters in the mountains, surrounded by green, mist, and silence. And also destinations beyond borders, where new cultures expand both vision and heart. Places chosen not only for their beauty, but for the energy that welcomes and transforms.
+
+Today, that dream has taken shape. It has become reality. Each retreat carries our story, our roots, our joy, and the essence of a safe harbor. These are spaces created with intention, care, and affection — designed to welcome, protect, and inspire.
+
+Now, we want to share this achievement with you. May our retreats become the setting for your pauses, your gatherings, and your celebrations. May you and those you love experience with us what was once just a dream and is now an open invitation to lightness, rest, and connection.">
+                    Raízes que Conectam</p>
+                <p data-pt="Venha viver o nosso sonho.
+Ele foi feito para ser compartilhado." data-en="Come live our dream.
+It was made to be shared.">
+                    Venha viver o nosso sonho. Ele foi feito para ser compartilhado.</p>
+                <p class="family-signature" data-pt="Com carinho, Família Betarello"
+                    data-en="With love, Betarello Family">Com carinho, Família Betarello</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <h4 data-pt="Porto Betarello" data-en="Porto Betarello">Porto Betarello</h4>
+                <span class="footer-line"></span>
+                <p data-pt="A família Betarello compartilha há gerações o prazer de hospedar e proporcionar experiências únicas em nossos refúgios."
+                    data-en="The Betarello family has shared for generations the pleasure of hosting and providing unique experiences in our retreats.">
+                    A família Betarello compartilha há gerações o prazer de hospedar e proporcionar experiências únicas
+                    em nossos refúgios.</p>
+            </div>
+            <div class="footer-col">
+                <h4 data-pt="Contato" data-en="Contact">Contato</h4>
+                <div class="footer-info">
+                    <p>✉ portobetarello@gmail.com</p>
+                    <p>+55 (19) 9 9916-9958</p>
+                    <p>+1 (216) 337-0184</p>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4 data-pt="Social" data-en="Social">Social</h4>
+                <p><i class="fa-brands fa-instagram"></i> porto_betarello</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p data-pt="© 2026 Família Betarello. Todos os direitos reservados."
+                data-en="© 2026 Betarello Family. All rights reserved.">© 2026 Família Betarello. Todos os direitos
+                reservados.</p>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/12163370184" target="_blank" class="whatsapp-float">
+        <svg viewBox="0 0 24 24" class="whatsapp-icon">
+            <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+        </svg>
+    </a>
+
+    <script>
+        let currentLang = 'pt';
+
+        function changeLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('preferredLanguage', lang);
+
+            document.querySelectorAll('[data-pt]').forEach(el => {
+                const text = lang === 'pt' ? el.getAttribute('data-pt') : el.getAttribute('data-en');
+                if (text) {
+                    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                        el.placeholder = text;
+                    } else {
+                        el.textContent = text;
+                    }
+                }
+            });
+
+            document.querySelectorAll('.lang-option').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('data-lang') === lang) {
+                    btn.classList.add('active');
+                }
+            });
+
+            const slider = document.querySelector('.lang-slider');
+            if (lang === 'en') {
+                slider.classList.add('slide-right');
+            } else {
+                slider.classList.remove('slide-right');
+            }
+
+            document.documentElement.setAttribute('lang', lang === 'pt' ? 'pt-BR' : 'en');
+        }
+
+        function initLanguage() {
+            const savedLang = localStorage.getItem('preferredLanguage') || 'pt';
+            changeLanguage(savedLang);
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('active');
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            initLanguage();
+
+            document.querySelectorAll('.lang-option').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const lang = btn.getAttribute('data-lang');
+                    changeLanguage(lang);
+                });
+            });
+
+            document.getElementById('menuToggle').addEventListener('click', toggleMobileMenu);
+
+            document.querySelectorAll('.mobile-nav a').forEach(link => {
+                link.addEventListener('click', () => {
+                    document.getElementById('mobileMenu').classList.remove('active');
+                });
+            });
+
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        const offset = 80;
+                        const top = target.offsetTop - offset;
+                        window.scrollTo({ top: top, behavior: 'smooth' });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

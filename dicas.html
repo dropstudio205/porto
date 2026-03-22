@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <title>Dicas da Família - Porto Betarello</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --azul-profundo: #000985;
+            --dourado-claro: #f5cc00;
+            --branco: #ffffff;
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Inter', sans-serif;
+        }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--font-body); font-weight: 300; color: #1a1a1a; line-height: 1.6; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+        /* Header */
+        .header { position: fixed; top: 0; width: 100%; z-index: 10000; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(0,0,0,0.08); }
+        .header-inner { display: flex; align-items: center; justify-content: space-between; height: 80px; }
+        .logo { font-family: var(--font-heading); font-size: 22px; font-weight: 600; color: var(--azul-profundo); text-decoration: none; }
+        .nav-desktop { display: flex; gap: 32px; }
+        .nav-link { position: relative; font-size: 14px; font-weight: 400; color: var(--azul-profundo); text-decoration: none; }
+        .nav-link::after { content: ""; position: absolute; left: 0; bottom: -6px; width: 0; height: 2px; background: var(--dourado-claro); transition: width 0.3s; }
+        .nav-link:hover::after { width: 100%; }
+        .header-actions { display: flex; align-items: center; gap: 16px; }
+        .icon-btn { width: 36px; height: 36px; border-radius: 50%; background: #f2f2f2; display: flex; align-items: center; justify-content: center; color: var(--azul-profundo); text-decoration: none; }
+        .lang-switch { position: relative; display: flex; background: #f1f1f1; border-radius: 999px; padding: 4px; width: 120px; height: 36px; }
+        .lang-option { flex: 1; z-index: 2; border: none; background: none; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 5px; color: #7a7a7a; transition: color 0.25s; }
+        .lang-option .country { font-size: 8px; font-weight: 600; }
+        .lang-option .lang { font-size: 12px; font-weight: 700; }
+        .lang-option.active { color: #ffffff; }
+        .lang-slider { position: absolute; top: 4px; left: 4px; width: calc(50% - 2px); height: 28px; background: var(--azul-profundo); border-radius: 999px; transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1); z-index: 1; }
+        .lang-slider.slide-right { transform: translateX(100%); }
+        .menu-btn { display: none; font-size: 22px; background: none; border: none; cursor: pointer; color: var(--azul-profundo); }
+        .mobile-menu { position: fixed; top: 80px; left: 0; width: 100%; overflow: hidden; max-height: 0; transition: max-height 0.35s ease; background: white; box-shadow: 0 4px 6px rgba(0,0,0,0.1); z-index: 9999; }
+        .mobile-menu.active { max-height: 400px; }
+        .mobile-nav { padding: 24px; display: flex; flex-direction: column; gap: 16px; }
+        .mobile-nav a { font-size: 16px; font-weight: 400; color: #666; text-decoration: none; padding-bottom: 8px; border-bottom: 1px solid #eee; }
+
+        /* Hero */
+        .tips-hero { margin-top: 80px; position: relative; height: 65vh; min-height: 480px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .tips-hero::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(0,9,133,0.75), rgba(0,9,133,0.5)); z-index: 1; }
+        .tips-hero-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+        .tips-hero-content { position: relative; z-index: 2; text-align: center; color: white; max-width: 850px; padding: 0 20px; }
+        .hero-line { display: block; width: 77px; height: 1px; background: linear-gradient(90deg, #d8a900, var(--dourado-claro)); margin: 0 auto 20px; }
+        .tips-hero h1 { font-family: var(--font-heading); font-size: clamp(46px, 7vw, 68px); font-weight: 700; margin-bottom: 22px; line-height: 1.1; }
+        .tips-hero p { font-size: clamp(16px, 2.5vw, 19px); font-weight: 300; line-height: 1.8; opacity: 0.95; }
+
+        /* Intro */
+        .intro-section { padding: 100px 20px; background: linear-gradient(135deg, #f8f9ff 0%, #fff 100%); }
+        .intro-content { max-width: 900px; margin: 0 auto; text-align: center; }
+        .intro-content h2 { font-family: var(--font-heading); font-size: clamp(34px, 5vw, 46px); font-weight: 700; color: var(--azul-profundo); margin-bottom: 25px; line-height: 1.2; }
+        .intro-content p { font-size: 18px; font-weight: 300; line-height: 1.9; color: #333; margin-bottom: 18px; }
+        .intro-highlight { font-style: italic; color: var(--azul-profundo); font-weight: 400; font-size: 20px; margin: 35px 0; padding: 30px; background: white; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.06); border-left: 4px solid var(--dourado-claro); }
+
+        /* Category Tabs */
+        .category-tabs { padding: 60px 20px 40px; background: white; border-bottom: 2px solid #f0f0f0; }
+        .tabs-container { max-width: 900px; margin: 0 auto; display: flex; gap: 10px; overflow-x: auto; scrollbar-width: none; padding-bottom: 5px; -webkit-overflow-scrolling: touch; }
+        .tabs-container::-webkit-scrollbar { display: none; }
+        .tab-btn { padding: 12px 24px; background: white; border: 2px solid #e0e0e0; border-radius: 30px; font-family: var(--font-body); font-size: 14px; font-weight: 500; color: #666; cursor: pointer; transition: all 0.3s; white-space: nowrap; flex-shrink: 0; -webkit-tap-highlight-color: transparent; user-select: none; }
+        .tab-btn:active { transform: scale(0.95); }
+        .tab-btn:hover { border-color: var(--dourado-claro); color: var(--azul-profundo); }
+        .tab-btn.active { background: var(--azul-profundo); border-color: var(--azul-profundo); color: white; }
+
+        /* Tips Grid */
+        .tips-section { padding: 80px 20px; }
+        .tips-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 35px; }
+        .tip-card { background: white; border-radius: 18px; overflow: hidden; box-shadow: 0 12px 35px rgba(0,0,0,0.08); transition: all 0.3s; }
+        .tip-card:hover { transform: translateY(-10px); box-shadow: 0 18px 45px rgba(0,0,0,0.14); }
+        .tip-image { position: relative; width: 100%; height: 240px; overflow: hidden; }
+        .tip-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+        .tip-card:hover .tip-image img { transform: scale(1.1); }
+        .tip-category-badge { position: absolute; top: 16px; left: 16px; padding: 8px 18px; border-radius: 20px; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+        .badge-trail { background: rgba(76,175,80,0.95); color: white; }
+        .badge-food { background: rgba(255,152,0,0.95); color: white; }
+        .badge-tourism { background: rgba(33,150,243,0.95); color: white; }
+        .tip-content { padding: 26px; }
+        .tip-location { display: flex; align-items: center; gap: 6px; font-size: 13px; color: #777; margin-bottom: 12px; }
+        .tip-location i { color: var(--dourado-claro); font-size: 14px; }
+        .tip-content h3 { font-family: var(--font-heading); font-size: 22px; font-weight: 700; color: var(--azul-profundo); margin-bottom: 12px; line-height: 1.3; }
+        .tip-content p { font-size: 15px; font-weight: 300; line-height: 1.7; color: #555; }
+
+        /* Shop Section */
+        .shop-section { padding: 100px 20px; background: white; }
+        .shop-header { text-align: center; margin-bottom: 60px; }
+        .shop-header h2 { font-family: var(--font-heading); font-size: clamp(36px, 5vw, 48px); font-weight: 700; color: var(--azul-profundo); margin-bottom: 15px; }
+        .shop-header p { font-size: 17px; font-weight: 300; color: #555; max-width: 700px; margin: 0 auto; }
+        .shop-carousel { position: relative; max-width: 1100px; margin: 0 auto 40px; }
+        .shop-carousel-wrapper { overflow: hidden; padding: 10px 5px; }
+        .shop-track { display: flex; gap: 30px; transition: transform 0.5s ease; width: fit-content; }
+        .product-card { flex: 0 0 340px; background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.08); transition: transform 0.3s; }
+        .product-card:hover { transform: translateY(-8px); box-shadow: 0 15px 40px rgba(0,0,0,0.12); }
+        .product-image { width: 100%; height: 280px; overflow: hidden; background: #f5f5f5; position: relative; }
+        .product-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; display: block; }
+        .product-card:hover .product-image img { transform: scale(1.08); }
+        .product-info { padding: 24px; }
+        .product-info h3 { font-family: var(--font-heading); font-size: 20px; font-weight: 600; color: var(--azul-profundo); margin-bottom: 10px; }
+        .product-info p { font-size: 15px; font-weight: 300; color: #666; line-height: 1.6; margin-bottom: 12px; }
+        .product-price { font-size: 22px; font-weight: 600; color: var(--dourado-claro); }
+        .carousel-controls { display: flex; justify-content: center; gap: 16px; margin-top: 40px; }
+        .carousel-control-btn { width: 48px; height: 48px; border-radius: 50%; border: 2px solid var(--azul-profundo); background: white; color: var(--azul-profundo); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s; }
+        .carousel-control-btn:hover { background: var(--azul-profundo); color: white; }
+        .carousel-control-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+        .carousel-control-btn i { font-size: 18px; }
+        .shop-cta { text-align: center; margin-top: 50px; }
+        .btn-shop { display: inline-block; padding: 16px 40px; background: var(--azul-profundo); color: white; text-decoration: none; border-radius: 12px; font-size: 16px; font-weight: 500; transition: all 0.3s; }
+        .btn-shop:hover { background: #000770; transform: translateY(-3px); box-shadow: 0 10px 25px rgba(0,9,133,0.25); }
+
+        /* Wellness Partner Section */
+        .wellness-section { padding: 120px 20px; background: linear-gradient(135deg, rgba(0,9,133,0.03) 0%, rgba(245,204,0,0.05) 100%); position: relative; overflow: hidden; }
+        .wellness-section::before { content: ''; position: absolute; top: -100px; right: -100px; width: 400px; height: 400px; background: radial-gradient(circle, rgba(245,204,0,0.1) 0%, transparent 70%); border-radius: 50%; }
+        .wellness-section::after { content: ''; position: absolute; bottom: -150px; left: -150px; width: 500px; height: 500px; background: radial-gradient(circle, rgba(0,9,133,0.05) 0%, transparent 70%); border-radius: 50%; }
+        .wellness-container { max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; }
+        .wellness-badge { display: inline-block; padding: 10px 24px; background: var(--dourado-claro); color: var(--azul-profundo); font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; border-radius: 25px; margin-bottom: 25px; }
+        .wellness-content { display: grid; grid-template-columns: 1fr 1.2fr; gap: 60px; align-items: center; }
+        .wellness-image { position: relative; border-radius: 20px; overflow: hidden; box-shadow: 0 25px 60px rgba(0,0,0,0.15); }
+        .wellness-image img { width: 100%; height: 550px; object-fit: cover; }
+        .wellness-text h2 { font-family: var(--font-heading); font-size: clamp(36px, 5vw, 52px); font-weight: 700; color: var(--azul-profundo); margin-bottom: 22px; line-height: 1.2; }
+        .wellness-text p { font-size: 17px; font-weight: 300; line-height: 1.9; color: #333; margin-bottom: 18px; }
+        .wellness-features { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin: 35px 0; }
+        .wellness-feature { display: flex; align-items: start; gap: 12px; padding: 18px; background: white; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        .wellness-feature i { color: var(--dourado-claro); font-size: 22px; margin-top: 2px; }
+        .wellness-feature-text h4 { font-size: 16px; font-weight: 600; color: var(--azul-profundo); margin-bottom: 4px; }
+        .wellness-feature-text p { font-size: 14px; color: #666; line-height: 1.5; }
+        .wellness-cta { display: inline-flex; align-items: center; gap: 12px; padding: 16px 36px; background: var(--azul-profundo); color: white; text-decoration: none; border-radius: 12px; font-size: 16px; font-weight: 500; transition: all 0.3s; margin-top: 20px; }
+        .wellness-cta:hover { background: #000770; transform: translateY(-3px); box-shadow: 0 10px 25px rgba(0,9,133,0.25); }
+        .wellness-cta i { font-size: 20px; }
+
+        /* Footer */
+        .footer { background: #0b1a8f; color: #ffffff; padding: 80px 60px 30px; }
+        .footer-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 60px; max-width: 1200px; margin: 0 auto; }
+        .footer h4 { font-size: 20px; margin-bottom: 12px; font-weight: 600; }
+        .footer-line { display: block; width: 40px; height: 2px; background: #f5cc00; margin-bottom: 20px; }
+        .footer p { font-size: 15px; line-height: 1.7; opacity: 0.9; }
+        .footer-info p { margin-bottom: 10px; }
+        .footer-col i { margin-right: 8px; font-size: 16px; opacity: 0.9; }
+        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.2); margin-top: 60px; padding-top: 20px; text-align: center; font-size: 13px; opacity: 0.8; }
+
+        /* WhatsApp */
+        .whatsapp-float { position: fixed; bottom: 24px; right: 24px; width: 56px; height: 56px; background: #25d366; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 25px rgba(0,0,0,0.2); z-index: 999; transition: transform 0.3s; }
+        .whatsapp-float:hover { transform: scale(1.1); }
+        .whatsapp-icon { width: 28px; height: 28px; fill: white; }
+
+        @media (max-width: 900px) {
+            .nav-desktop { display: none; }
+            .menu-btn { display: block; }
+            .tips-grid { grid-template-columns: 1fr; }
+            .wellness-content { grid-template-columns: 1fr; gap: 40px; }
+            .wellness-image img { height: 400px; }
+            .wellness-features { grid-template-columns: 1fr; }
+            .tabs-container { justify-content: flex-start; gap: 8px; }
+            .tab-btn { padding: 10px 20px; font-size: 13px; }
+            .product-card { flex: 0 0 280px; }
+            .shop-carousel-wrapper { padding: 10px 10px; }
+        }
+
+        @media (max-width: 768px) {
+            .footer-container { grid-template-columns: 1fr; text-align: center; }
+            .footer-line { margin: 10px auto 20px; }
+            .tips-hero { height: 55vh; min-height: 420px; }
+            .tab-btn { padding: 10px 18px; font-size: 12px; }
+            .product-card { flex: 0 0 calc(100vw - 60px); max-width: 400px; }
+            .shop-track { gap: 20px; }
+            .shop-carousel-wrapper { padding: 10px 20px; }
+            .product-image { height: 240px; }
+        }
+
+        @media (max-width: 480px) {
+            .tab-btn { padding: 8px 16px; font-size: 12px; }
+            .tabs-container { gap: 6px; }
+            .product-card { flex: 0 0 calc(100vw - 50px); }
+            .shop-carousel-wrapper { padding: 10px 15px; }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="index.html" class="logo">Porto Betarello</a>
+                <nav class="nav-desktop">
+                    <a href="index.html" class="nav-link" data-pt="Início" data-en="Home">Início</a>
+                    <a href="sobre.html" class="nav-link" data-pt="Nossa história" data-en="Our story">Nossa história</a>
+                    <a href="refugios.html" class="nav-link" data-pt="Refúgios" data-en="Retreats">Refúgios</a>
+                    <a href="dicas.html" class="nav-link" data-pt="Dicas da família" data-en="Family Tips">Dicas</a>
+                    <a href="contato.html" class="nav-link" data-pt="Contato" data-en="Contact">Contato</a>
+                </nav>
+                <div class="header-actions">
+                    <a href="https://www.instagram.com/porto_betarello/" target="_blank" class="icon-btn">
+                        <svg viewBox="0 0 24 24" width="16" height="16">
+                            <path fill="currentColor" d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm10 2c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3h10zm-5 3a5 5 0 100 10 5 5 0 000-10zm0 2a3 3 0 110 6 3 3 0 010-6zm4.8-.9a1.1 1.1 0 11-2.2 0 1.1 1.1 0 012.2 0z" />
+                        </svg>
+                    </a>
+                    <div class="lang-switch">
+                        <button class="lang-option active" data-lang="pt">
+                            <span class="country">BR</span>
+                            <span class="lang">PT</span>
+                        </button>
+                        <button class="lang-option" data-lang="en">
+                            <span class="country">GB</span>
+                            <span class="lang">EN</span>
+                        </button>
+                        <span class="lang-slider"></span>
+                    </div>
+                    <button class="menu-btn" id="menuToggle">☰</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <nav class="mobile-nav">
+            <a href="index.html" data-pt="Início" data-en="Home">Início</a>
+            <a href="sobre.html" data-pt="Nossa história" data-en="Our story">Nossa história</a>
+            <a href="refugios.html" data-pt="Refúgios" data-en="Retreats">Refúgios</a>
+            <a href="dicas.html" data-pt="Dicas da família" data-en="Family Tips">Dicas</a>
+            <a href="contato.html" data-pt="Contato" data-en="Contact">Contato</a>
+        </nav>
+    </div>
+
+    <section class="tips-hero">
+        <img class="tips-hero-bg" src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1600&q=80" alt="Beautiful destination">
+        <div class="tips-hero-content">
+            <span class="hero-line"></span>
+            <h1 data-pt="Dicas da Família" data-en="Family Tips">Dicas da Família</h1>
+            <p data-pt="Os segredos mais bem guardados da região, compartilhados com carinho pela família Betarello. Lugares que amamos e queremos que você também descubra." data-en="The region's best-kept secrets, lovingly shared by the Betarello family. Places we love and want you to discover too.">Os segredos mais bem guardados da região, compartilhados com carinho pela família Betarello. Lugares que amamos e queremos que você também descubra.</p>
+        </div>
+    </section>
+
+    <section class="intro-section">
+        <div class="container">
+            <div class="intro-content">
+                <h2 data-pt="Explore Como Um Local" data-en="Explore Like a Local">Explore Como Um Local</h2>
+                <p data-pt="Viver aqui por gerações nos deu algo especial: conhecimento profundo dos lugares mais autênticos e experiências que você não encontra nos guias turísticos convencionais." data-en="Living here for generations has given us something special: deep knowledge of the most authentic places and experiences you won't find in conventional tourist guides.">Viver aqui por gerações nos deu algo especial: conhecimento profundo dos lugares mais autênticos e experiências que você não encontra nos guias turísticos convencionais.</p>
+                <div class="intro-highlight" data-pt="Estas são nossas dicas pessoais - aquela praia escondida onde levamos os amigos, o restaurante familiar que serve o melhor peixe da região, a trilha com a vista mais incrível ao amanhecer." data-en="These are our personal tips - that hidden beach where we take friends, the family restaurant that serves the best fish in the region, the trail with the most incredible sunrise view.">Estas são nossas dicas pessoais - aquela praia escondida onde levamos os amigos, o restaurante familiar que serve o melhor peixe da região, a trilha com a vista mais incrível ao amanhecer.</div>
+                <p data-pt="Explore, descubra e crie memórias inesquecíveis com as nossas recomendações." data-en="Explore, discover and create unforgettable memories with our recommendations.">Explore, descubra e crie memórias inesquecíveis com as nossas recomendações.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="category-tabs">
+        <div class="tabs-container">
+            <button class="tab-btn active" data-category="all" data-pt="Todas" data-en="All">Todas</button>
+            <button class="tab-btn" data-category="trail" data-pt="Trilhas" data-en="Trails">Trilhas</button>
+            <button class="tab-btn" data-category="food" data-pt="Gastronomia" data-en="Gastronomy">Gastronomia</button>
+            <button class="tab-btn" data-category="tourism" data-pt="Turismo" data-en="Tourism">Turismo</button>
+        </div>
+    </section>
+
+    <section class="tips-section">
+        <div class="container">
+            <div class="tips-grid" id="tipsGrid">
+                <!-- Trilhas -->
+                <article class="tip-card" data-category="trail">
+                    <div class="tip-image">
+                        <img src="dicasimg/20201213_093245-1024x485-1.jpg" alt="Trilha">
+                        <span class="tip-category-badge badge-trail" data-pt="TRILHA" data-en="TRAIL">TRILHA</span>
+                    </div>
+                    <div class="tip-content">
+                        <div class="tip-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span data-pt="Guarda do Embaú, SC" data-en="Guarda do Embaú, SC">F@</span>
+                        </div>
+                        <h3 data-pt="Vale da Utopia - Guarda do Embaú" data-en="Vale da Utopia - Guarda do Embaú">Vale da Utopia - Guarda do Embaú</h3>
+                        <p data-pt="Indicamos para quem gosta de trilhas leves, natureza preservada e paisagens que convidam à contemplação. O caminho passa por mata nativa e leva a praias mais tranquilas, ideais para desacelerar e se reconectar." data-en="We recommend it for those who enjoy easy trails, preserved nature, and landscapes that invite contemplation. The path goes through native forest and leads to quieter beaches, perfect for slowing down and reconnecting.">@</p>
+                    </div>
+                </article>
+
+                <article class="tip-card" data-category="trail">
+                    <div class="tip-image">
+                        <img src="dicasimg/dsc-1312a-largejpg.jpg" alt="Trilha">
+                        <span class="tip-category-badge badge-trail" data-pt="TRILHA" data-en="TRAIL">TRILHA</span>
+                    </div>
+                    <div class="tip-content">
+                        <div class="tip-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span data-pt="Praia do Rosa, SC" data-en="Praia do Rosa, SC">Praia do Rosa, SC</span>
+                        </div>
+                        <h3 data-pt="Trilha do Morro das Pedras" data-en="Morro das Pedras Trail">Trilha do Morro das Pedras</h3>
+                        <p data-pt="Vista 360° de tirar o fôlego! A trilha é curta (40 min) mas íngreme. Vá ao nascer do sol para uma experiência mágica. Nosso spot secreto para meditação." data-en="Breathtaking 360° view! The trail is short (40 min) but steep. Go at sunrise for a magical experience. Our secret spot for meditation.">Vista 360° de tirar o fôlego! A trilha é curta (40 min) mas íngreme. Vá ao nascer do sol para uma experiência mágica. Nosso spot secreto para meditação.</p>
+                    </div>
+                </article>
+
+                <!-- Gastronomia -->
+                <article class="tip-card" data-category="food">
+                    <div class="tip-image">
+                        <img src="dicasimg/caption.jpg" alt="Restaurante">
+                        <span class="tip-category-badge badge-food" data-pt="GASTRONOMIA" data-en="GASTRONOMY">GASTRONOMIA</span>
+                    </div>
+                    <div class="tip-content">
+                        <div class="tip-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span data-pt="Palhoça, SC" data-en="Palhoça, SC">Palhoça, SC</span>
+                        </div>
+                        <h3 data-pt="Restaurante Guardião" data-en="Restaurante Guardião">Restaurante Guardião</h3>
+                        <p data-pt="Indicamos este restaurante pelo bom atendimento e pelo strogonoff de camarão, que é bem servido e chega rápido à mesa. O ambiente é amplo, há opções de bebidas como Coca-Cola de vidro e a localização, próxima à praia, facilita muito para quem busca um almoço prático depois do mar." data-en="We recommend this restaurant for its good service and the shrimp stroganoff, which is well served and arrives quickly at the table. The space is large, there are drink options such as bottled Coca-Cola, and its location near the beach makes it a convenient choice for lunch.">@</p>
+                    </div>
+                </article>
+
+                <article class="tip-card" data-category="trail">
+                    <div class="tip-image">
+                        <img src="dicasimg/Dolmen-da-Oracao-Foto-Reproducao-Redes-sociais-1.jpg" alt="Trilha">
+                        <span class="tip-category-badge badge-trail" data-pt="TRILHA" data-en="TRAIL">TRILHA</span>
+                    </div>
+                    <div class="tip-content">
+                        <div class="tip-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span data-pt="Ponta do Caçador, SC" data-en="Ponta do Caçador, SC">Ponta do Caçador</span>
+                        </div>
+                        <h3 data-pt="Dólmen da Oração" data-en="Dólmen da Oração">Dólmen da Oração</h3>
+                        <p data-pt="Indicamos para quem busca silêncio, contato com a natureza e momentos de introspecção. O local é conhecido pelas formações de pedras e pela atmosfera tranquila, sendo frequentemente visitado para pausas, contemplação e conexão interior. Ideal para quem gosta de caminhar com calma e apreciar paisagens naturais." data-en="We recommend it for those seeking silence, nature, and moments of introspection. The site is known for its stone formations and peaceful atmosphere, often visited for pauses, contemplation, and inner connection. Ideal for those who enjoy slow walks and natural landscapes.">V@</p>
+                    </div>
+                </article>
+
+                <article class="tip-card" data-category="tourism">
+    <div class="tip-image">
+        <img src="dicasimg/serra-do-rio-do-rastro-foto-iraci-duarte-scaled.webp" alt="Serra do Rio do Rastro">
+        <span class="tip-category-badge badge-tourism" data-pt="TURISMO" data-en="TOURISM">TURISMO</span>
+    </div>
+    <div class="tip-content">
+        <div class="tip-location">
+            <i class="fas fa-map-marker-alt"></i>
+            <span data-pt="Bom Jardim da Serra / Lauro Müller - SC" data-en="Bom Jardim da Serra / Lauro Müller - SC">
+                Bom Jardim da Serra / Lauro Müller - SC
+            </span>
+        </div>
+        <h3 data-pt="Serra do Rio do Rastro" data-en="Serra do Rio do Rastro">
+            Serra do Rio do Rastro
+        </h3>
+        <p 
+            data-pt="Uma das estradas mais impressionantes do Brasil, famosa por suas curvas e mirantes. Ideal para fotos e contemplação. No inverno, as temperaturas caem bastante e pode haver geada. Leve agasalho."
+            data-en="One of the most impressive roads in Brazil, famous for its curves and viewpoints. Perfect for photos and sightseeing. In winter, temperatures drop significantly and frost may occur. Bring warm clothes.">
+            Uma das estradas mais impressionantes do Brasil, famosa por suas curvas e mirantes. Ideal para fotos e contemplação. No inverno, as temperaturas caem bastante e pode haver geada. Leve agasalho.
+        </p>
+    </div>
+</article>
+
+
+                <article class="tip-card" data-category="food">
+    <div class="tip-image">
+        <img src="dicasimg/images (4).jpeg" alt="Bistrô Pedra da Vigia">
+        <span class="tip-category-badge badge-food" data-pt="GASTRONOMIA" data-en="GASTRONOMY">GASTRONOMIA</span>
+    </div>
+    <div class="tip-content">
+        <div class="tip-location">
+            <i class="fas fa-map-marker-alt"></i>
+            <span data-pt="Praia do Rosa, Imbituba - SC" data-en="Praia do Rosa, Imbituba - SC">
+                Praia do Rosa, Imbituba - SC
+            </span>
+        </div>
+        <h3 data-pt="Bistrô Pedra da Vigia" data-en="Pedra da Vigia Bistro">
+            Bistrô Pedra da Vigia
+        </h3>
+        <p 
+            data-pt="Restaurante localizado em um dos pontos mais altos da Praia do Rosa, conhecido pelo jantar ao pôr do sol. Trabalha com menu degustação e ingredientes locais. Recomenda-se reserva."
+            data-en="Restaurant located at one of the highest points of Praia do Rosa, known for sunset dinners. Offers a tasting menu with local ingredients. Reservation recommended.">
+            Restaurante localizado em um dos pontos mais altos da Praia do Rosa, conhecido pelo jantar ao pôr do sol. Trabalha com menu degustação e ingredientes locais. Recomenda-se reserva.
+        </p>
+    </div>
+</article>
+
+            </div>
+        </div>
+    </section>
+
+    <!--
+    <section class="shop-section">
+        <div class="container">
+            <div class="shop-header">
+                <h2 data-pt="Nossa Loja" data-en="Our Shop">Nossa Loja</h2>
+                <p data-pt="Produtos selecionados especialmente para complementar sua experiência em nossos refúgios." data-en="Products specially selected to complement your experience in our retreats.">Produtos selecionados especialmente para complementar sua experiência em nossos refúgios.</p>
+            </div>
+            
+            <div class="shop-carousel">
+                <div class="shop-carousel-wrapper">
+                    <div class="shop-track" id="shopTrack">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=800&q=80" alt="Kit amenities">
+                        </div>
+                        <div class="product-info">
+                            <h3 data-pt="Kit Amenities Premium" data-en="Premium Amenities Kit">Kit Amenities Premium</h3>
+                            <p data-pt="Produtos de banho artesanais com fragrâncias naturais. Perfeito para presentear ou levar para casa." data-en="Handcrafted bath products with natural fragrances. Perfect for gifting or taking home.">Produtos de banho artesanais com fragrâncias naturais. Perfeito para presentear ou levar para casa.</p>
+                            <div class="product-price">R$ 89,90</div>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=800&q=80" alt="Cesta café">
+                        </div>
+                        <div class="product-info">
+                            <h3 data-pt="Cesta Café da Manhã Especial" data-en="Special Breakfast Basket">Cesta Café da Manhã Especial</h3>
+                            <p data-pt="Delícias locais incluindo pães artesanais, geleias caseiras e café especial da região." data-en="Local delicacies including artisan breads, homemade jams and special regional coffee.">Delícias locais incluindo pães artesanais, geleias caseiras e café especial da região.</p>
+                            <div class="product-price">R$ 149,90</div>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=800&q=80" alt="Vela aromática">
+                        </div>
+                        <div class="product-info">
+                            <h3 data-pt="Vela Aromática Porto" data-en="Porto Scented Candle">Vela Aromática Porto</h3>
+                            <p data-pt="Fragrância exclusiva que remete aos nossos refúgios. Feita à mão com cera de soja natural." data-en="Exclusive fragrance that evokes our retreats. Handmade with natural soy wax.">Fragrância exclusiva que remete aos nossos refúgios. Feita à mão com cera de soja natural.</p>
+                            <div class="product-price">R$ 65,00</div>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=800&q=80" alt="Toalha">
+                        </div>
+                        <div class="product-info">
+                            <h3 data-pt="Conjunto de Toalhas Luxo" data-en="Luxury Towel Set">Conjunto de Toalhas Luxo</h3>
+                            <p data-pt="As mesmas toalhas macias dos nossos refúgios. 100% algodão egípcio premium." data-en="The same soft towels from our retreats. 100% premium Egyptian cotton.">As mesmas toalhas macias dos nossos refúgios. 100% algodão egípcio premium.</p>
+                            <div class="product-price">R$ 299,00</div>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=800&q=80" alt="Livro">
+                        </div>
+                        <div class="product-info">
+                            <h3 data-pt="Guia de Trilhas Ilustrado" data-en="Illustrated Trail Guide">Guia de Trilhas Ilustrado</h3>
+                            <p data-pt="Todas as melhores trilhas da região com mapas, dicas e fotografias exclusivas." data-en="All the best trails in the region with maps, tips and exclusive photographs.">Todas as melhores trilhas da região com mapas, dicas e fotografias exclusivas.</p>
+                            <div class="product-price">R$ 79,90</div>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=800&q=80" alt="Voucher">
+                        </div>
+                        <div class="product-info">
+                            <h3 data-pt="Vale-Presente Experiência" data-en="Experience Gift Card">Vale-Presente Experiência</h3>
+                            <p data-pt="O presente perfeito! Vale para hospedagem em qualquer um dos nossos refúgios." data-en="The perfect gift! Valid for accommodation at any of our retreats.">O presente perfeito! Vale para hospedagem em qualquer um dos nossos refúgios.</p>
+                            <div class="product-price" data-pt="A partir de R$ 500" data-en="From R$ 500">A partir de R$ 500</div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+
+                <div class="carousel-controls">
+                    <button class="carousel-control-btn" id="shopPrev">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="carousel-control-btn" id="shopNext">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="shop-cta">
+                <a href="#" class="btn-shop" data-pt="Acessar Nossa Loja" data-en="Visit Our Shop">Acessar Nossa Loja</a>
+            </div>
+        </div>
+    </section>
+-->
+
+    <section class="wellness-section">
+        <div class="wellness-container">
+            <center>
+                <span class="wellness-badge" data-pt="PARCEIRA RECOMENDADA" data-en="RECOMMENDED PARTNER">PARCEIRA RECOMENDADA</span>
+            </center>
+            <div class="wellness-content">
+                <div class="wellness-image">
+                    <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=800&q=80" alt="Yoga e bem-estar">
+                </div>
+                <div class="wellness-text">
+                    <h2 data-pt="Renove Corpo e Mente" data-en="Renew Body and Mind">Renove Corpo e Mente</h2>
+                    <p data-pt="Durante sua estadia, recomendamos os serviços da nossa querida irmã, especialista em terapias holísticas e bem-estar. Uma experiência transformadora que complementa perfeitamente seus dias de descanso em nossos refúgios." data-en="During your stay, we recommend the services of our dear sister, a specialist in holistic therapies and wellness. A transformative experience that perfectly complements your days of rest in our retreats.">Durante sua estadia, recomendamos os serviços da nossa querida irmã, especialista em terapias holísticas e bem-estar. Uma experiência transformadora que complementa perfeitamente seus dias de descanso em nossos refúgios.</p>
+                    <p data-pt="Com anos de experiência e formação internacional, ela oferece tratamentos personalizados que harmonizam corpo, mente e espírito." data-en="With years of experience and international training, she offers personalized treatments that harmonize body, mind and spirit.">Com anos de experiência e formação internacional, ela oferece tratamentos personalizados que harmonizam corpo, mente e espírito.</p>
+                    
+                    <div class="wellness-features">
+                        <div class="wellness-feature">
+                            <i class="fas fa-spa"></i>
+                            <div class="wellness-feature-text">
+                                <h4 data-pt="Yoga & Meditação" data-en="Yoga & Meditation">Yoga & Meditação</h4>
+                                <p data-pt="Aulas particulares e em grupo" data-en="Private and group classes">Aulas particulares e em grupo</p>
+                            </div>
+                        </div>
+                        <div class="wellness-feature">
+                            <i class="fas fa-hands"></i>
+                            <div class="wellness-feature-text">
+                                <h4 data-pt="Massoterapia" data-en="Massage Therapy">Massoterapia</h4>
+                                <p data-pt="Técnicas relaxantes e terapêuticas" data-en="Relaxing and therapeutic techniques">Técnicas relaxantes e terapêuticas</p>
+                            </div>
+                        </div>
+                        <div class="wellness-feature">
+                            <i class="fas fa-leaf"></i>
+                            <div class="wellness-feature-text">
+                                <h4 data-pt="Terapia Holística" data-en="Holistic Therapy">Terapia Holística</h4>
+                                <p data-pt="Reiki, aromaterapia e mais" data-en="Reiki, aromatherapy and more">Reiki, aromaterapia e mais</p>
+                            </div>
+                        </div>
+                        <div class="wellness-feature">
+                            <i class="fas fa-heart"></i>
+                            <div class="wellness-feature-text">
+                                <h4 data-pt="Retiros Personalizados" data-en="Custom Retreats">Retiros Personalizados</h4>
+                                <p data-pt="Programas completos de bem-estar" data-en="Complete wellness programs">Programas completos de bem-estar</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="https://www.instagram.com/serena.a.mente?igsh=cG9mc2V3aTIxNTI4" target="_blank" class="wellness-cta">
+                        <i class="fab fa-instagram"></i>
+                        <span data-pt="Conheça os Serviços" data-en="Discover the Services">Conheça os Serviços</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <h4 data-pt="Porto Betarello" data-en="Porto Betarello">Porto Betarello</h4>
+                <span class="footer-line"></span>
+                <p data-pt="A família Betarello compartilha há gerações o prazer de hospedar e proporcionar experiências únicas em nossos refúgios." data-en="The Betarello family has shared for generations the pleasure of hosting and providing unique experiences in our retreats.">A família Betarello compartilha há gerações o prazer de hospedar e proporcionar experiências únicas em nossos refúgios.</p>
+            </div>
+            <div class="footer-col">
+                <h4 data-pt="Contato" data-en="Contact">Contato</h4>
+                <div class="footer-info">
+                    <p>✉ portobetarello@gmail.com</p>
+                    <p>+55 (19) 9 9916-9958</p>
+                    <p>+1 (216) 337-0184</p>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4 data-pt="Social" data-en="Social">Social</h4>
+                <p><i class="fa-brands fa-instagram"></i> porto_betarello</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p data-pt="© 2026 Família Betarello. Todos os direitos reservados." data-en="© 2026 Betarello Family. All rights reserved.">© 2026 Família Betarello. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/12163370184" target="_blank" class="whatsapp-float">
+        <svg viewBox="0 0 24 24" class="whatsapp-icon"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    </a>
+
+    <script>
+        let currentLang = 'pt';
+        let shopCurrentIndex = 0;
+
+        function getCardsToShow() {
+            if (window.innerWidth <= 768) return 1;
+            if (window.innerWidth <= 900) return 2;
+            return 3;
+        }
+
+        function changeLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('preferredLanguage', lang);
+            
+            document.querySelectorAll('[data-pt]').forEach(el => {
+                const text = lang === 'pt' ? el.getAttribute('data-pt') : el.getAttribute('data-en');
+                if (text) {
+                    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                        el.placeholder = text;
+                    } else {
+                        el.textContent = text;
+                    }
+                }
+            });
+
+            document.querySelectorAll('.lang-option').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('data-lang') === lang) {
+                    btn.classList.add('active');
+                }
+            });
+
+            const slider = document.querySelector('.lang-slider');
+            if (lang === 'en') {
+                slider.classList.add('slide-right');
+            } else {
+                slider.classList.remove('slide-right');
+            }
+
+            document.documentElement.setAttribute('lang', lang === 'pt' ? 'pt-BR' : 'en');
+        }
+
+        function initLanguage() {
+            const savedLang = localStorage.getItem('preferredLanguage') || 'pt';
+            changeLanguage(savedLang);
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('active');
+        }
+
+        // Category Filter
+        function filterTips(category) {
+            const cards = document.querySelectorAll('.tip-card');
+            
+            cards.forEach(card => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.style.display = 'block';
+                    // Force reflow for animation
+                    card.offsetHeight;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            // Update active tab
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.category === category) {
+                    btn.classList.add('active');
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            initLanguage();
+
+            document.querySelectorAll('.lang-option').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const lang = btn.getAttribute('data-lang');
+                    changeLanguage(lang);
+                });
+            });
+
+            document.getElementById('menuToggle').addEventListener('click', toggleMobileMenu);
+
+            document.querySelectorAll('.mobile-nav a').forEach(link => {
+                link.addEventListener('click', () => {
+                    document.getElementById('mobileMenu').classList.remove('active');
+                });
+            });
+
+            // Category tabs - simplified for better mobile support
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const category = this.getAttribute('data-category');
+                    filterTips(category);
+                });
+            });
+
+            // Shop Carousel
+            const shopTrack = document.getElementById('shopTrack');
+            const shopPrevBtn = document.getElementById('shopPrev');
+            const shopNextBtn = document.getElementById('shopNext');
+            const productCards = document.querySelectorAll('.product-card');
+            const totalShopCards = productCards.length;
+            
+            function updateShopCarousel() {
+                const cardsToShow = getCardsToShow();
+                let cardWidth = 340;
+                let gap = 30;
+                
+                if (window.innerWidth <= 768) {
+                    cardWidth = Math.min(window.innerWidth - 60, 400);
+                    gap = 20;
+                } else if (window.innerWidth <= 900) {
+                    cardWidth = 280;
+                    gap = 30;
+                }
+                
+                const offset = -(shopCurrentIndex * (cardWidth + gap));
+                shopTrack.style.transform = `translateX(${offset}px)`;
+                
+                // Update button states
+                shopPrevBtn.disabled = shopCurrentIndex === 0;
+                shopNextBtn.disabled = shopCurrentIndex >= totalShopCards - cardsToShow;
+            }
+
+            shopPrevBtn.addEventListener('click', () => {
+                if (shopCurrentIndex > 0) {
+                    shopCurrentIndex--;
+                    updateShopCarousel();
+                }
+            });
+
+            shopNextBtn.addEventListener('click', () => {
+                const cardsToShow = getCardsToShow();
+                const maxIndex = totalShopCards - cardsToShow;
+                if (shopCurrentIndex < maxIndex) {
+                    shopCurrentIndex++;
+                    updateShopCarousel();
+                }
+            });
+
+            // Reset carousel on window resize
+            let resizeTimer;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(() => {
+                    shopCurrentIndex = 0;
+                    updateShopCarousel();
+                }, 250);
+            });
+
+            // Initialize carousel
+            updateShopCarousel();
+        });
+    </script>
+</body>
+</html>

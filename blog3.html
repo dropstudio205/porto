@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Post</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        .header-nav {
+            background: white;
+            padding: 1.5rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            font-weight: 500;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .translate-btn {
+            padding: 0.75rem 1.5rem;
+            background: white;
+            border: 2px solid #667eea;
+            color: #667eea;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .translate-btn:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .article-header {
+            background: white;
+            padding: 3rem 2rem;
+            margin-top: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .article-title {
+            font-size: 3rem;
+            color: #667eea;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .article-meta {
+            display: flex;
+            gap: 1.5rem;
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+        }
+
+        .article-cover {
+            width: 100%;
+            max-height: 500px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .translate-btn {
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .translate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .hero-image {
+            width: 100%;
+            max-height: 500px;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .blog-header {
+            padding: 3rem 0 2rem;
+        }
+
+        .blog-title {
+            font-size: 3rem;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .blog-meta {
+            display: flex;
+            gap: 2rem;
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+        }
+
+        .featured-image {
+            width: 100%;
+            max-height: 500px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .blog-title {
+            font-size: 3rem;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            color: #1a1a1a;
+        }
+
+        .blog-meta {
+            display: flex;
+            gap: 2rem;
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #e9ecef;
+        }
+
+        .translate-btn {
+            padding: 0.6rem 1.2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .translate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            margin-top: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .post-header {
+            max-width: 800px;
+            margin: 3rem auto 2rem;
+            padding: 0 2rem;
+        }
+
+        .post-title {
+            font-size: 3rem;
+            line-height: 1.2;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+        }
+
+        .post-meta {
+            display: flex;
+            gap: 2rem;
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .translate-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: white;
+            border: 2px solid #667eea;
+            color: #667eea;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .translate-btn:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        .post-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem 4rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .post-content p {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            color: #333;
+        }
+
+        .post-content h2 {
+            font-size: 2rem;
+            margin: 2.5rem 0 1rem;
+            color: #1a1a1a;
+        }
+
+        .post-content h3 {
+            font-size: 1.5rem;
+            margin: 2rem 0 1rem;
+            color: #333;
+        }
+
+        .hero-image {
+            width: 100%;
+            max-width: 1200px;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin: 2rem auto;
+            display: block;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        @media (max-width: 768px) {
+            .post-title {
+                font-size: 2rem;
+            }
+
+            .hero-image {
+                height: 300px;
+                border-radius: 0;
+            }
+
+            .post-content p {
+                font-size: 1rem;
+            }
+
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        .gallery {
+    max-width: 800px;
+    margin: 3rem auto;
+    padding: 0 1rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+.gallery img {
+    width: 100%;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.gallery img:hover {
+    transform: scale(1.03);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .gallery {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Modal */
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+}
+
+.modal img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 10px;
+}
+
+    </style>
+</head>
+<body>
+    <div class="header-nav">
+        <div class="nav-container">
+            <a href="index.html" class="back-btn">← Voltar ao Site</a>
+            <button class="translate-btn" onclick="translateContent()">
+                <span id="translateIcon">🌐</span>
+                <span id="translateText">Translate to English</span>
+            </button>
+        </div>
+    </div>
+
+    <img src="blog/WhatsApp Image 2026-01-14 at 16.13.59.jpeg" alt="Imagem de capa" class="hero-image">
+
+    <div class="post-header">
+        <h1 class="post-title" id="title">Curiosidade Literária: As Raízes Reais de “Grande Sertão: Veredas</h1>
+    </div>
+
+    <div class="post-content" id="content">
+        <p><br>Você sabia que o icônico romance Grande Sertão: Veredas, de João Guimarães Rosa, não surgiu apenas da imaginação do autor, mas foi inspirado em uma expedição real pelo sertão mineiro em 1952? Nessa jornada épica de boiadeiros, um dos vaqueiros que assumia o papel de cozinheiro da tropa era o lendário Zito – ou João Henrique Ribeiro, um homem do campo, poeta e guia habilidoso, que travou contato próximo com o próprio Guimarães Rosa durante a travessia.
+E aqui vai o toque pessoal e fascinante: Seu Zito é nada menos que o irmão mais velho da minha mãe! Nascidos no coração do sertão de Minas Gerais, eles cresceram imersos nas paisagens áridas e nas tradições rurais que tanto influenciaram a obra de Rosa. Cheios de histórias autênticas do campo – de tropeadas intermináveis a noites sob o céu estrelado –, eles representam o espírito vivo do sertão que pulsa nas páginas do livro. Essa conexão familiar transforma a literatura em algo palpável, provando que as veredas de Guimarães Rosa ecoam nas vidas reais de mineiros como nós. Uma verdadeira ponte entre ficção e herança cultural</p>
+
+            <h2>Detalhes sobre Seu Zito: O Vaqueiro que Inspirou Guimarães Rosa</h2>
+
+        <p>Seu Zito, cujo nome completo é João Henrique Ribeiro, é uma figura icônica ligada à expedição de boiadeiros realizada por João Guimarães Rosa pelo sertão mineiro em maio de 1952. Essa viagem, que durou cerca de 10 dias e inspirou diretamente obras como Grande Sertão: Veredas e Corpo de Baile, contou com Zito como um dos principais companheiros do escritor. Nascido no sertão de Minas Gerais, assim como você mencionou ser o irmão mais velho de sua mãe, ele representava o autêntico homem do campo: mineiro raiz, cheio de histórias rurais, versos improvisados e sabedoria prática sobre a vida nas veredas áridas. ￼
+
+            <h2>Papel na Expedição</h2>
+Zito atuou como guia e cozinheiro da tropa. Ele ia à frente da boiada, tocando o berrante para orientar os bois e mantendo conversas constantes com Guimarães Rosa. Durante toda a jornada, respondia às inúmeras dúvidas do escritor sobre o sertão, suas tradições, dialetos e desafios cotidianos. Rosa o considerava o “mais esperto” entre os vaqueiros, servindo como uma fonte primordial para suas anotações – que mais tarde se transformaram em elementos literários. A expedição envolvia o transporte de cerca de 360 bois grandes, partindo da Fazenda Sirga (próxima a Andrequicé, distrito de Três Marias, MG) em 19 de maio de 1952, com uma festa de despedida. O percurso cobriu mais de 40 léguas, passando por locais como Fazenda Tolda, Catatau, Riacho das Vacas, Meleiro, Barreiro do Mato, Fazenda Ventania do Juvenal, Riacho da Areia, Fazenda do Dr. José Saturnino, Cordisburgo, Toca do Urubu (onde encontraram repórteres da revista O Cruzeiro) e chegando a uma fazenda perto de Araçaí (MG). Participaram cerca de 8 ou 9 vaqueiros, incluindo nomes como Manuelzão (chefe da tropa e inspiração para personagens de Rosa), Tião Leite, Santana, Sebastião de Jesus, Gregório, Bindéia, Aquiles (um bom violeiro) e um rapazinho de 12 anos. ￼
+
+            <h2>Antecedentes Pessoais</h2>
+
+Aos 74 anos, em uma entrevista concedida à Revista Cult em Três Marias (MG), Zito se descrevia como um vaqueiro experiente, mas com a memória afetada por uma doença recente. Apesar disso, era um leitor voraz: sabia muitos livros de cor e mantinha o hábito de registrar versos poéticos sobre o dia a dia. Durante a viagem, escrevia esses versos à noite, ao redor da fogueira, e os anotava nas cadernetas de Guimarães Rosa – hoje arquivadas no Instituto de Estudos Brasileiros (IEB) da USP. Sua família, enraizada no sertão mineiro, compartilhava o amor pelas histórias do campo, cheias de tropeadas, noites estreladas e desafios da vida rural. Como irmão mais velho de sua mãe, ele carrega esse legado familiar de mineiros autênticos, que você destacou na curiosidade que escrevemos juntos. ￼
+
+            <h2>Anedotas e Histórias Compartilhadas</h2>
+
+Zito contava com humor sobre a viagem: quando os assuntos acabavam, ele “inventava bobagens”, como falar de mulheres e moças bonitas, só para manter a conversa fluindo – e Rosa anotava tudo! Ele ria ao lembrar que o escritor adorava versos, mas não os memorizava. Muitas das narrativas de Zito foram incorporadas às obras de Rosa, confirmando que o autor “escreveu tudo” baseado no que ouvia dos vaqueiros. Em depoimentos, Zito relembrava a camaradagem noturna, as fogueiras e como a expedição misturava trabalho árduo com momentos poéticos. Há menções a cenas específicas, como uma com um tucano, que Zito ajudou a descrever, tornando-se uma das mais belas em relatos de Rosa. ￼
+Essa conexão entre Zito e Guimarães Rosa não foi apenas profissional: transformou-se em uma ponte entre a vida real do sertão e a literatura brasileira, ecoando nas páginas de Grande Sertão: Veredas. Como familiar seu, ele simboliza esse amor incondicional pelas raízes mineiras que você valoriza tanto.
+</p>
+         <h2>Versos de Zito na Expedição de 1952</h2>
+
+            <p>João Henrique Ribeiro, o Seu Zito, foi uma figura central na expedição boiadeira de maio de 1952 pelo sertão mineiro, atuando como guia, cozinheiro e companheiro constante de João Guimarães Rosa. Durante a viagem, que inspirou obras como Grande Sertão: Veredas, Zito tinha o hábito de escrever versos todas as noites, após o trabalho com a tropa. Sentado à beira da fogueira, ele registrava em um caderno escolar os eventos do dia, transformando a rotina árdua dos vaqueiros em poesia simples e autêntica, com caligrafia arrastada e frases diretas. Esses versos narravam o cotidiano da jornada – como o movimento da boiada, as paradas em fazendas, as conversas e os desafios do sertão – e eram frequentemente compartilhados com Rosa, que os anotava em suas próprias cadernetas.
+Infelizmente, os versos originais de Zito não são amplamente publicados ou disponíveis em fontes online acessíveis. Eles estão preservados nas cadernetas de viagem de Guimarães Rosa, arquivadas no Instituto de Estudos Brasileiros (IEB) da USP, em São Paulo. Pesquisas em entrevistas, artigos e relatos (como o depoimento de Zito à Revista Cult em 2001) confirmam a existência desses escritos, mas não incluem transcrições completas ou citações verbatim. Zito mencionava que escrevia sobre "o que passava no dia" e que Rosa anotava tudo, mas ele próprio ria ao lembrar que inventava "bobagens" para manter as conversas fluindo, como histórias de mulheres ou detalhes da natureza.</p>
+
+                <h3>Exemplo de Verso Coletado na Expedição</h3>
+
+                <p>Embora não atribuído exclusivamente a Zito, uma quadrinha (verso popular em quatro linhas) foi recolhida por Guimarães Rosa durante a viagem, entre os vaqueiros da tropa – possivelmente inspirada ou compartilhada por Zito, dado seu papel como poeta do grupo. Ela captura o espírito da vida sertaneja e aparece em Ave, Palavra (p. 114), um livro de Rosa com anotações e recolhimentos da expedição:</p>
+                <pre>Meu cavalo é minhas pernas,
+meu arreio é meu assento,
+meu capote é minha cama,
+meu perigo é meu sustento.</pre> <p></p>
+<p>Essa quadrinha reflete o dia a dia dos vaqueiros: a dependência do cavalo, o uso prático dos equipamentos e a aceitação do risco como parte da existência no sertão. É um exemplo típico do tipo de poesia oral e improvisada que Zito e os outros produziam, misturando humor, sabedoria rural e observações da natureza.</p>
+    </div>
+
+    <div class="gallery">
+    <img src="blog/WhatsApp Image 2026-01-14 at 16.13.59.jpeg" alt="Foto 1" onclick="openImage(this.src)">
+    <img src="blog/rosa-capa-1115156.png" alt="Foto 2" onclick="openImage(this.src)">
+    <img src="blog/rosa-1115157.jpg" alt="Foto 3" onclick="openImage(this.src)">
+    <img src="blog/content_viagem_de_1952_a_boiada_foto_4.jpg" alt="Foto 3" onclick="openImage(this.src)">
+</div>
+
+<div class="modal" id="imageModal" onclick="closeImage()">
+    <img id="modalImg">
+</div>
+
+
+    <script>
+        let isEnglish = false;
+
+        const translations = {
+            pt: {
+                title: "As Dunas de Floripa e o silêncio que reorganiza a mente",
+                content: `<p><br>Você sabia que o icônico romance Grande Sertão: Veredas, de João Guimarães Rosa, não surgiu apenas da imaginação do autor, mas foi inspirado em uma expedição real pelo sertão mineiro em 1952? Nessa jornada épica de boiadeiros, um dos vaqueiros que assumia o papel de cozinheiro da tropa era o lendário Zito – ou João Henrique Ribeiro, um homem do campo, poeta e guia habilidoso, que travou contato próximo com o próprio Guimarães Rosa durante a travessia.
+E aqui vai o toque pessoal e fascinante: Seu Zito é nada menos que o irmão mais velho da minha mãe! Nascidos no coração do sertão de Minas Gerais, eles cresceram imersos nas paisagens áridas e nas tradições rurais que tanto influenciaram a obra de Rosa. Cheios de histórias autênticas do campo – de tropeadas intermináveis a noites sob o céu estrelado –, eles representam o espírito vivo do sertão que pulsa nas páginas do livro. Essa conexão familiar transforma a literatura em algo palpável, provando que as veredas de Guimarães Rosa ecoam nas vidas reais de mineiros como nós. Uma verdadeira ponte entre ficção e herança cultural</p>
+
+            <h2>Detalhes sobre Seu Zito: O Vaqueiro que Inspirou Guimarães Rosa</h2>
+
+        <p>Seu Zito, cujo nome completo é João Henrique Ribeiro, é uma figura icônica ligada à expedição de boiadeiros realizada por João Guimarães Rosa pelo sertão mineiro em maio de 1952. Essa viagem, que durou cerca de 10 dias e inspirou diretamente obras como Grande Sertão: Veredas e Corpo de Baile, contou com Zito como um dos principais companheiros do escritor. Nascido no sertão de Minas Gerais, assim como você mencionou ser o irmão mais velho de sua mãe, ele representava o autêntico homem do campo: mineiro raiz, cheio de histórias rurais, versos improvisados e sabedoria prática sobre a vida nas veredas áridas. ￼
+
+            <h2>Papel na Expedição</h2>
+Zito atuou como guia e cozinheiro da tropa. Ele ia à frente da boiada, tocando o berrante para orientar os bois e mantendo conversas constantes com Guimarães Rosa. Durante toda a jornada, respondia às inúmeras dúvidas do escritor sobre o sertão, suas tradições, dialetos e desafios cotidianos. Rosa o considerava o “mais esperto” entre os vaqueiros, servindo como uma fonte primordial para suas anotações – que mais tarde se transformaram em elementos literários. A expedição envolvia o transporte de cerca de 360 bois grandes, partindo da Fazenda Sirga (próxima a Andrequicé, distrito de Três Marias, MG) em 19 de maio de 1952, com uma festa de despedida. O percurso cobriu mais de 40 léguas, passando por locais como Fazenda Tolda, Catatau, Riacho das Vacas, Meleiro, Barreiro do Mato, Fazenda Ventania do Juvenal, Riacho da Areia, Fazenda do Dr. José Saturnino, Cordisburgo, Toca do Urubu (onde encontraram repórteres da revista O Cruzeiro) e chegando a uma fazenda perto de Araçaí (MG). Participaram cerca de 8 ou 9 vaqueiros, incluindo nomes como Manuelzão (chefe da tropa e inspiração para personagens de Rosa), Tião Leite, Santana, Sebastião de Jesus, Gregório, Bindéia, Aquiles (um bom violeiro) e um rapazinho de 12 anos. ￼
+
+            <h2>Antecedentes Pessoais</h2>
+
+Aos 74 anos, em uma entrevista concedida à Revista Cult em Três Marias (MG), Zito se descrevia como um vaqueiro experiente, mas com a memória afetada por uma doença recente. Apesar disso, era um leitor voraz: sabia muitos livros de cor e mantinha o hábito de registrar versos poéticos sobre o dia a dia. Durante a viagem, escrevia esses versos à noite, ao redor da fogueira, e os anotava nas cadernetas de Guimarães Rosa – hoje arquivadas no Instituto de Estudos Brasileiros (IEB) da USP. Sua família, enraizada no sertão mineiro, compartilhava o amor pelas histórias do campo, cheias de tropeadas, noites estreladas e desafios da vida rural. Como irmão mais velho de sua mãe, ele carrega esse legado familiar de mineiros autênticos, que você destacou na curiosidade que escrevemos juntos. ￼
+
+            <h2>Anedotas e Histórias Compartilhadas</h2>
+
+Zito contava com humor sobre a viagem: quando os assuntos acabavam, ele “inventava bobagens”, como falar de mulheres e moças bonitas, só para manter a conversa fluindo – e Rosa anotava tudo! Ele ria ao lembrar que o escritor adorava versos, mas não os memorizava. Muitas das narrativas de Zito foram incorporadas às obras de Rosa, confirmando que o autor “escreveu tudo” baseado no que ouvia dos vaqueiros. Em depoimentos, Zito relembrava a camaradagem noturna, as fogueiras e como a expedição misturava trabalho árduo com momentos poéticos. Há menções a cenas específicas, como uma com um tucano, que Zito ajudou a descrever, tornando-se uma das mais belas em relatos de Rosa. ￼
+Essa conexão entre Zito e Guimarães Rosa não foi apenas profissional: transformou-se em uma ponte entre a vida real do sertão e a literatura brasileira, ecoando nas páginas de Grande Sertão: Veredas. Como familiar seu, ele simboliza esse amor incondicional pelas raízes mineiras que você valoriza tanto.
+</p>
+         <h2>Versos de Zito na Expedição de 1952</h2>
+
+            <p>João Henrique Ribeiro, o Seu Zito, foi uma figura central na expedição boiadeira de maio de 1952 pelo sertão mineiro, atuando como guia, cozinheiro e companheiro constante de João Guimarães Rosa. Durante a viagem, que inspirou obras como Grande Sertão: Veredas, Zito tinha o hábito de escrever versos todas as noites, após o trabalho com a tropa. Sentado à beira da fogueira, ele registrava em um caderno escolar os eventos do dia, transformando a rotina árdua dos vaqueiros em poesia simples e autêntica, com caligrafia arrastada e frases diretas. Esses versos narravam o cotidiano da jornada – como o movimento da boiada, as paradas em fazendas, as conversas e os desafios do sertão – e eram frequentemente compartilhados com Rosa, que os anotava em suas próprias cadernetas.
+Infelizmente, os versos originais de Zito não são amplamente publicados ou disponíveis em fontes online acessíveis. Eles estão preservados nas cadernetas de viagem de Guimarães Rosa, arquivadas no Instituto de Estudos Brasileiros (IEB) da USP, em São Paulo. Pesquisas em entrevistas, artigos e relatos (como o depoimento de Zito à Revista Cult em 2001) confirmam a existência desses escritos, mas não incluem transcrições completas ou citações verbatim. Zito mencionava que escrevia sobre "o que passava no dia" e que Rosa anotava tudo, mas ele próprio ria ao lembrar que inventava "bobagens" para manter as conversas fluindo, como histórias de mulheres ou detalhes da natureza.</p>
+
+                <h3>Exemplo de Verso Coletado na Expedição</h3>
+
+                <p>Embora não atribuído exclusivamente a Zito, uma quadrinha (verso popular em quatro linhas) foi recolhida por Guimarães Rosa durante a viagem, entre os vaqueiros da tropa – possivelmente inspirada ou compartilhada por Zito, dado seu papel como poeta do grupo. Ela captura o espírito da vida sertaneja e aparece em Ave, Palavra (p. 114), um livro de Rosa com anotações e recolhimentos da expedição:</p>
+                <pre>Meu cavalo é minhas pernas,
+meu arreio é meu assento,
+meu capote é minha cama,
+meu perigo é meu sustento.</pre> <p></p>
+<p>Essa quadrinha reflete o dia a dia dos vaqueiros: a dependência do cavalo, o uso prático dos equipamentos e a aceitação do risco como parte da existência no sertão. É um exemplo típico do tipo de poesia oral e improvisada que Zito e os outros produziam, misturando humor, sabedoria rural e observações da natureza.</p>
+
+    `
+            },
+            en: {
+                title: "The dunes of Florianópolis and the silence that reorganizes the mind",
+                content: `<p><br>Did you know that the iconic novel Grande Sertão: Veredas, by João Guimarães Rosa, did not emerge solely from the author’s imagination, but was inspired by a real expedition through the backlands of Minas Gerais in 1952? On this epic journey of cattle drivers, one of the cowhands who took on the role of the group’s cook was the legendary Zito — or João Henrique Ribeiro, a man of the land, poet, and skilled guide, who had close contact with Guimarães Rosa himself during the crossing.
+And here comes the personal and fascinating touch: Seu Zito is none other than my mother’s older brother! Born in the heart of the backlands of Minas Gerais, they grew up immersed in the arid landscapes and rural traditions that so deeply influenced Rosa’s work. Full of authentic stories from the countryside — from endless cattle drives to nights under star-filled skies — they represent the living spirit of the sertão that pulses through the pages of the book. This family connection turns literature into something tangible, proving that Guimarães Rosa’s veredas echo in the real lives of people from Minas Gerais like us. A true bridge between fiction and cultural heritage.</p>
+
+<h2>Details about Seu Zito: The Cowboy Who Inspired Guimarães Rosa</h2>
+
+<p>Seu Zito, whose full name was João Henrique Ribeiro, is an iconic figure linked to the cattle-driving expedition carried out by João Guimarães Rosa through the backlands of Minas Gerais in May 1952. This journey, which lasted about 10 days and directly inspired works such as Grande Sertão: Veredas and Corpo de Baile, included Zito as one of the writer’s main companions. Born in the backlands of Minas Gerais — just as you mentioned, he was your mother’s older brother — he embodied the authentic man of the countryside: a true-rooted Minas native, full of rural stories, improvised verses, and practical wisdom about life in the harsh veredas.</p>
+
+<h2>Role in the Expedition</h2>
+<p>Zito served as both guide and cook for the group. He rode ahead of the cattle, blowing the berrante to guide the herd and maintaining constant conversations with Guimarães Rosa. Throughout the journey, he answered the writer’s many questions about the sertão, its traditions, dialects, and everyday challenges. Rosa considered him the “sharpest” among the cowhands, making him a primary source for notes that later became literary elements. The expedition involved transporting around 360 large cattle, departing from Fazenda Sirga (near Andrequicé, a district of Três Marias, MG) on May 19, 1952, with a farewell celebration. The route covered more than 40 leagues, passing through places such as Fazenda Tolda, Catatau, Riacho das Vacas, Meleiro, Barreiro do Mato, Fazenda Ventania do Juvenal, Riacho da Areia, Fazenda do Dr. José Saturnino, Cordisburgo, Toca do Urubu (where they encountered reporters from O Cruzeiro magazine), and arriving at a farm near Araçaí (MG). About 8 or 9 cowhands participated, including names such as Manuelzão (leader of the group and inspiration for Rosa’s characters), Tião Leite, Santana, Sebastião de Jesus, Gregório, Bindéia, Aquiles (a talented viola player), and a 12-year-old boy.</p>
+
+<h2>Personal Background</h2>
+
+<p>At the age of 74, in an interview given to Revista Cult in Três Marias (MG), Zito described himself as an experienced cowboy, though with memory affected by a recent illness. Despite this, he was an avid reader: he knew many books by heart and maintained the habit of recording poetic verses about everyday life. During the trip, he wrote these verses at night, around the campfire, and noted them in Guimarães Rosa’s notebooks — now archived at the Institute of Brazilian Studies (IEB) at USP. His family, deeply rooted in the backlands of Minas Gerais, shared a love for countryside stories filled with cattle drives, starry nights, and the challenges of rural life. As your mother’s older brother, he carries this family legacy of authentic Minas natives that you highlighted in the curiosity we wrote together.</p>
+
+<h2>Anecdotes and Shared Stories</h2>
+
+<p>Zito humorously recalled the journey: when topics ran out, he would “make up nonsense,” such as talking about women and pretty girls, just to keep the conversation flowing — and Rosa would write everything down! He laughed when remembering that the writer loved verses but did not memorize them. Many of Zito’s narratives were incorporated into Rosa’s works, confirming that the author “wrote everything” based on what he heard from the cowhands. In testimonies, Zito recalled the nighttime camaraderie, the campfires, and how the expedition mixed hard work with poetic moments. There are mentions of specific scenes, such as one involving a toucan, which Zito helped describe, becoming one of the most beautiful moments in Rosa’s accounts.</p>
+<p>This connection between Zito and Guimarães Rosa was not merely professional: it became a bridge between the real life of the sertão and Brazilian literature, echoing through the pages of Grande Sertão: Veredas. As your relative, he symbolizes this unconditional love for Minas Gerais roots that you value so deeply.</p>
+
+<h2>Zito’s Verses During the 1952 Expedition</h2>
+
+<p>João Henrique Ribeiro, known as Seu Zito, was a central figure in the cattle-driving expedition of May 1952 through the backlands of Minas Gerais, serving as guide, cook, and constant companion to João Guimarães Rosa. During the journey, which inspired works such as Grande Sertão: Veredas, Zito had the habit of writing verses every night after the day’s work with the herd. Sitting by the campfire, he recorded the events of the day in a school notebook, transforming the harsh routine of the cowhands into simple, authentic poetry, with flowing handwriting and direct phrases. These verses narrated the daily life of the journey — such as the movement of the cattle, stops at farms, conversations, and the challenges of the sertão — and were often shared with Rosa, who copied them into his own notebooks.
+Unfortunately, Zito’s original verses are not widely published or available in accessible online sources. They are preserved in Guimarães Rosa’s travel notebooks, archived at the Institute of Brazilian Studies (IEB) at USP in São Paulo. Research in interviews, articles, and accounts (such as Zito’s testimony to Revista Cult in 2001) confirms the existence of these writings, but does not include complete transcriptions or verbatim quotations. Zito mentioned that he wrote about “what happened during the day” and that Rosa wrote everything down, but he himself laughed when recalling that he invented “nonsense” to keep conversations going, such as stories about women or details of nature.</p>
+
+<h3>Example of a Verse Collected During the Expedition</h3>
+
+<p>Although not attributed exclusively to Zito, a quatrain (a four-line popular verse) was collected by Guimarães Rosa during the journey among the cowhands of the group — possibly inspired or shared by Zito, given his role as the group’s poet. It captures the spirit of sertanejo life and appears in Ave, Palavra (p. 114), a book by Rosa containing notes and collections from the expedition:</p>
+<pre>My horse is my legs,
+my saddle is my seat,
+my coat is my bed,
+my danger is my livelihood.</pre> <p></p>
+<p>This quatrain reflects the daily life of the cowhands: dependence on the horse, the practical use of equipment, and the acceptance of risk as part of existence in the sertão. It is a typical example of the kind of oral and improvised poetry that Zito and others produced, blending humor, rural wisdom, and observations of nature.</p>
+
+
+        `
+            }
+        };
+
+        function translateContent() {
+            isEnglish = !isEnglish;
+            const lang = isEnglish ? 'en' : 'pt';
+            
+            document.getElementById('title').textContent = translations[lang].title;
+            document.getElementById('content').innerHTML = translations[lang].content;
+            document.getElementById('translateText').textContent = isEnglish ? 'Traduzir para Português' : 'Translate to English';
+        }
+
+        function openImage(src) {
+    const modal = document.getElementById("imageModal");
+    const modalImg = document.getElementById("modalImg");
+    modalImg.src = src;
+    modal.style.display = "flex";
+}
+
+function closeImage() {
+    document.getElementById("imageModal").style.display = "none";
+}
+
+
+    </script>
+</body>
+</html>

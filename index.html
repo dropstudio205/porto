@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17936349705"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-17936349705');
+</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="#home" class="logo">Porto Betarello</a>
+                <nav class="nav-desktop">
+                    <a href="index.html" class="nav-link" data-pt="Início" data-en="Home">Início</a>
+                    <a href="sobre.html" class="nav-link" data-pt="Nossa história" data-en="Our story">Nossa
+                        história</a>
+                    <a href="refugios.html" class="nav-link" data-pt="Refúgios" data-en="Retreats">Refúgio</a>
+                    <a href="dicas.html" class="nav-link" data-pt="Dicas da família" data-en="Family Tips">Dicas</a>
+                    <a href="contato.html" class="nav-link" data-pt="Contato" data-en="Contact">Contato</a>
+                </nav>
+                <div class="header-actions">
+                    <a href="https://www.instagram.com/porto_betarello/" target="_blank" class="icon-btn">
+                        <svg viewBox="0 0 24 24" width="16" height="16">
+                            <path fill="currentColor"
+                                d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm10 2c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3h10zm-5 3a5 5 0 100 10 5 5 0 000-10zm0 2a3 3 0 110 6 3 3 0 010-6zm4.8-.9a1.1 1.1 0 11-2.2 0 1.1 1.1 0 012.2 0z" />
+                        </svg>
+                    </a>
+                    <div class="lang-switch">
+                        <button class="lang-option active" data-lang="pt">
+                            <span class="country">BR</span>
+                            <span class="lang">PT</span>
+                        </button>
+                        <button class="lang-option" data-lang="en">
+                            <span class="country">GB</span>
+                            <span class="lang">EN</span>
+                        </button>
+                        <span class="lang-slider"></span>
+                    </div>
+                    <button class="menu-btn" id="menuToggle">☰</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <nav class="mobile-nav">
+            <a href="index.html" data-pt="Início" data-en="Home">Início</a>
+            <a href="sobre.html" data-pt="Nossa história" data-en="Our story">Nossa história</a>
+            <a href="refugios.html" data-pt="Refúgios" data-en="Retreats">Galeria</a>
+            <a href="dicas.html" data-pt="Dicas da família" data-en="Family Tips">Dicas</a>
+            <a href="contato.html" data-pt="Contato" data-en="Contact">Contato</a>
+        </nav>
+    </div>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <span class="hero-line"></span>
+            <h1 class="hero-title">Porto Betarello</h1>
+            <p class="hero-subtitle"
+                data-pt="Refúgios aconchegantes preparados pela família Betarello para você desacelerar, reconectar e viver o melhor da vida."
+                data-en="Cozy retreats carefully prepared by the Betarello family for you to slow down, reconnect, and enjoy the very best of life.">
+                Cozy retreats carefully prepared by the Betarello family for you to slow down, reconnect, and enjoy the
+                very best of life.</p>
+            <p class="hero-description"
+                data-pt="Viajar não é apenas mudar de lugar, é restaurar a mente, reduzir o estresse e criar memórias que duram para sempre."
+                data-en="Traveling is not just changing places, it restores the mind, reduces stress, and creates memories that last forever.">
+                Viajar não é apenas mudar de lugar, é restaurar a mente, reduzir o estresse e criar memórias que duram
+                para sempre.</p>
+            <a href="refugios.html" class="btn btn-primary" data-pt="Descubra nossos refúgios"
+                data-en="Discover our retreats">Descubra nossos refúgios</a>
+        </div>
+    </section>
+
+    <section id="galeria" class="gallery-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="decorative-line"></span>
+                <h2 data-pt="Momentos Porto Betarello" data-en="Porto Betarello Moments">Momentos Porto Betarello</h2>
+                <span class="decorative-line"></span>
+            </div>
+            <div class="gallery-carousel">
+                <button class="carousel-btn carousel-btn-prev" id="carouselPrev">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="15 18 9 12 15 6"></polyline>
+                    </svg>
+                </button>
+                <div class="gallery-track" id="galleryTrack">
+                    <div class="gallery-item" data-index="0">
+                        <img src="img/img01site.jpeg" alt="Piscina">
+                        <p class="gallery-caption" data-pt="Tarde calma" data-en="A calm afternoon">#</p>
+                    </div>
+                    <div class="gallery-item" data-index="1">
+                        <img src="img/img02site.jpeg" alt="Quarto">
+                        <p class="gallery-caption" data-pt="Por do sol sob a cidade" data-en="Sunset over the city">#
+                        </p>
+                    </div>
+                    <div class="gallery-item" data-index="2">
+                        <img src="img/img03site.jpeg" alt="Trilha">
+                        <p class="gallery-caption" data-pt="Trilhas na natureza" data-en="Nature trails">#</p>
+                    </div>
+                    <div class="gallery-item" data-index="3">
+                        <img src="img/img04site.jpeg" alt="Jantar">
+                        <p class="gallery-caption" data-pt="Lugares memoráveis" data-en="Memorable places">Jantares
+                            memoráveis</p>
+                    </div>
+                    <div class="gallery-item" data-index="4">
+                        <img src="img/img05site.jpeg" alt="Praia">
+                        <p class="gallery-caption" data-pt="Estilo blog" data-en="Blog style">Praias
+                            exclusivas</p>
+                    </div>
+                    <div class="gallery-item" data-index="4">
+                        <img src="img/img06site.jpeg" alt="Praia">
+                        <p class="gallery-caption" data-pt="Trilha" data-en="Trail">#</p>
+                    </div>
+                    <div class="gallery-item" data-index="4">
+                        <img src="img/img07site.jpeg" alt="Praia">
+                        <p class="gallery-caption" data-pt="Trilha" data-en="Trail">#</p>
+                    </div>
+                    <div class="gallery-item" data-index="4">
+                        <img src="img/img08site.jpeg" alt="Praia">
+                        <p class="gallery-caption" data-pt="Praia de Floripa" data-en="Floripa Beach">#</p>
+                    </div>
+                </div>
+                <button class="carousel-btn carousel-btn-next" id="carouselNext">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section id="dicas" class="dicas-section">
+        <div class="container">
+            <div class="section-header column">
+                <span class="decorative-line"></span>
+                <h2 data-pt="Blog Betarello" data-en="Blog Betarello">Blog Betarello</h2>
+                <p class="dicas-subtitle" data-pt="Fique por dentro do nosso blog no Substack"
+                    data-en="Stay up to date with our blog on Substack">Fique por dentro do nosso blog na Substack</p>
+            </div>
+            <div class="dicas-cards">
+                <a href="blog1.html" class="dica-link">
+                    <article class="dica-card-img">
+                        <div class="dica-img">
+                            
+                            <img src="blog/WhatsApp Image 2026-01-13 at 11.25.59.jpeg" alt="Trilha">
+                        </div>
+                        <h3 data-pt="Arroz, feijão, moela e amor" data-en="Rice, beans, traditional Brazilian chicken gizzards, and love">Arroz, feijão, moela e amor
+                        </h3>
+                        <p data-pt="Há comidas que alimentam o corpo.
+E há aquelas que alimentam a história."
+                            data-en="Some foods feed the body.
+Others feed the story.">Há comidas que alimentam o corpo.
+E há aquelas que alimentam a história.</p>
+                    </article>
+                </a>
+                <a href="blog2.html" class="dica-link">
+                    <article class="dica-card-img">
+                        <div class="dica-img">
+                            
+                            <img src="blog/WhatsApp Image 2026-01-13 at 11.39.59 (1).jpeg" alt="Trilha">
+                        </div>
+                        <h3 data-pt="Viajar também é um lugar dentro da mente" data-en="Travel is also a place within the mind">Viajar também é um lugar dentro da mente
+                        </h3>
+                        <p data-pt="Viajar não é apenas mudar de endereço."
+                            data-en="Traveling is not just changing locations.">Viajar não é apenas mudar de endereço.</p>
+                    </article>
+                </a>
+                <a href="blog3.html" class="dica-link">
+                    <article class="dica-card-img">
+                        <div class="dica-img">
+                            
+                            <img src="blog/WhatsApp Image 2026-01-14 at 16.13.59.jpeg" alt="Trilha">
+                        </div>
+                        <h3 data-pt="Curiosidade Literária: As Raízes Reais de “Grande Sertão: Veredas" data-en="Literary Curiosity: The Real Roots of Grande Sertão: Veredas">Curiosidade Literária: As Raízes Reais de “Grande Sertão: Veredas
+                        </h3>
+                        <p data-pt="Você sabia que o icônico romance Grande Sertão..."
+                            data-en="Did you know that the iconic novel Grande Sertão: Veredas…">Você sabia que o icônico romance Grande Sertão</p>
+                    </article>
+                </a>
+            </div>
+            <div class="dicas-cta">
+                <a href="https://substack.com/profile/425787344-porto-betarello?utm_source=global-search" class="btn btn-outline" target="_blank" data-pt="Ver Blog no Substack" data-en="View the blog on Substack">Ver Blog no Substack</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="heritage-section">
+        <div class="section-header column">
+            <span class="decorative-line"></span>
+            <h2 data-pt="Feedback" data-en="Feedback">Feedback</h2>
+            <p class="dicas-subtitle" data-pt="Veja o feedback dos nossos hóspedes" data-en="See our guests' feedback">
+                Veja o feedback dos nossos hóspedes</p>
+        </div>
+        <div class="heritage-feedback">
+            <p class="feedback-text"
+                data-pt="Tive dias incríveis durante minha estadia neste apartamento em Palhoça. O lugar é simplesmente aconchegante, bonito e muito bem cuidado, daqueles que fazem a gente se sentir em casa desde o primeiro momento.
+
+O apartamento é confortável, organizado e com uma energia muito boa, perfeito para descansar e aproveitar a região. Tudo funcionou perfeitamente e a experiência como um todo foi extremamente positiva.
+
+Foram dias tranquilos, agradáveis e com muito conforto. Sem dúvida, é um lugar que recomendo para quem busca uma estadia agradável, seja para descanso ou trabalho. Com certeza ficaria novamente e guardo ótimas lembranças desse período em Palhoça."
+                data-en="I had an amazing stay in this apartment in Palhoça. The place is simply cozy, beautiful, and very well maintained, the kind of space that makes you feel at home from the very first moment.
+
+The apartment is comfortable, well organized, and has a great, positive vibe, perfect for relaxing and enjoying the area. Everything worked perfectly, and the overall experience was extremely positive.
+
+The days were peaceful, pleasant, and very comfortable. Without a doubt, it’s a place I highly recommend to anyone looking for a great stay, whether for leisure or work. I would definitely stay here again and have wonderful memories from my time in Palhoça.">
+                Tive dias incríveis durante minha estadia neste apartamento em Palhoça. O lugar é simplesmente
+                aconchegante, bonito e muito bem cuidado, daqueles que fazem a gente se sentir em casa desde o primeiro
+                momento.</p>
+            <span class="feedback-author">Thiago • Palhoça</span>
+        </div>
+        <span class="heritage-divider"></span>
+        <div class="heritage-feedback">
+            <p class="feedback-text"
+                data-pt="A estadia foi tranquila, a anfitriã esteve sempre em contato comigo para explicar sobre o check-in e check-out ( foi muito flexível nesse aspecto). Deu dicas e sugestões sobre a cidade, restaurantes e pontos turísticos. A casa estava limpa e o quarto é bem confortável."
+                data-en="The stay was peaceful, and the host was always in touch with me to explain the check-in and check-out process (she was very flexible in this regard). She also gave tips and suggestions about the city, restaurants, and tourist attractions. The house was clean, and the bedroom was very comfortable.">
+            </p>
+            <span class="feedback-author" data-pt="Lorran • São Paulo" data-en="Lorran • São Paulo">Família hóspede •
+                Verão no Sul do Brasil</span>
+        </div>
+        <span class="heritage-divider"></span>
+        <div class="heritage-feedback">
+            <p class="feedback-text"
+                data-pt="Fiquei com a Fabiana algumas vezes e é sempre um prazer. :)"
+                data-en="I stayed with Fabiana a few times and it's always a pleasure. :)">
+            </p>
+            <span class="feedback-author" data-pt="Simon • Londres" data-en="Simon • London">Família hóspede •
+                Verão no Sul do Brasil</span>
+        </div>
+    </section>
+
+    <footer id="contato" class="footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <h4 data-pt="Porto Betarello" data-en="Porto Betarello">Porto Betarello</h4>
+                <span class="footer-line"></span>
+                <p data-pt="A família Betarello compartilha há gerações o prazer de hospedar e proporcionar experiências únicas em nossos refúgios."
+                    data-en="The Betarello family has shared for generations the pleasure of hosting and providing unique experiences in our retreats.">
+                    A família Betarello compartilha há gerações o prazer de hospedar e proporcionar experiências únicas
+                    em nossos refúgios.</p>
+            </div>
+            <div class="footer-col">
+                <h4 data-pt="Contato" data-en="Contact">Contato</h4>
+                <div class="footer-info">
+                    <p>✉ portobetarello@gmail.com</p>
+                    
+                    <p>+55 (19) 9 9916-9958</p>
+                    <p>+1 (216) 337-0184</p>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Social</h4>
+                <p><i class="fa-brands fa-instagram"></i> porto_betarello</p>
+            </div>
+
+        </div>
+        <div class="footer-bottom">
+            <p data-pt="© 2026 Família Betarello. Todos os direitos reservados."
+                data-en="© 2026 Betarello Family. All rights reserved.">© 2026 Família Betarello. Todos os direitos
+                reservados.</p>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/12163370184" target="_blank" class="whatsapp-float">
+        <svg viewBox="0 0 24 24" class="whatsapp-icon">
+            <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+        </svg>
+    </a>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox">
+        <button class="lightbox-close" id="lightboxClose">✕</button>
+        <button class="lightbox-prev" id="lightboxPrev">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+        </button>
+        <img id="lightboxImage" src="" alt="">
+        <button class="lightbox-next" id="lightboxNext">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+        </button>
+    </div>
+    <script src="script.js"></script>
+
+</body>
+
+</html>

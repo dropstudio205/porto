@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Post</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        .header-nav {
+            background: white;
+            padding: 1.5rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            font-weight: 500;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .translate-btn {
+            padding: 0.75rem 1.5rem;
+            background: white;
+            border: 2px solid #667eea;
+            color: #667eea;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .translate-btn:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .article-header {
+            background: white;
+            padding: 3rem 2rem;
+            margin-top: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .article-title {
+            font-size: 3rem;
+            color: #667eea;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .article-meta {
+            display: flex;
+            gap: 1.5rem;
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+        }
+
+        .article-cover {
+            width: 100%;
+            max-height: 500px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .translate-btn {
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .translate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .hero-image {
+            width: 100%;
+            max-height: 500px;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .blog-header {
+            padding: 3rem 0 2rem;
+        }
+
+        .blog-title {
+            font-size: 3rem;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .blog-meta {
+            display: flex;
+            gap: 2rem;
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+        }
+
+        .featured-image {
+            width: 100%;
+            max-height: 500px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .blog-title {
+            font-size: 3rem;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            color: #1a1a1a;
+        }
+
+        .blog-meta {
+            display: flex;
+            gap: 2rem;
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #e9ecef;
+        }
+
+        .translate-btn {
+            padding: 0.6rem 1.2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .translate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            margin-top: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .post-header {
+            max-width: 800px;
+            margin: 3rem auto 2rem;
+            padding: 0 2rem;
+        }
+
+        .post-title {
+            font-size: 3rem;
+            line-height: 1.2;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+        }
+
+        .post-meta {
+            display: flex;
+            gap: 2rem;
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .translate-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: white;
+            border: 2px solid #667eea;
+            color: #667eea;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .translate-btn:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        .post-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem 4rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .post-content p {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            color: #333;
+        }
+
+        .post-content h2 {
+            font-size: 2rem;
+            margin: 2.5rem 0 1rem;
+            color: #1a1a1a;
+        }
+
+        .post-content h3 {
+            font-size: 1.5rem;
+            margin: 2rem 0 1rem;
+            color: #333;
+        }
+
+        .hero-image {
+            width: 100%;
+            max-width: 1200px;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin: 2rem auto;
+            display: block;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        @media (max-width: 768px) {
+            .post-title {
+                font-size: 2rem;
+            }
+
+            .hero-image {
+                height: 300px;
+                border-radius: 0;
+            }
+
+            .post-content p {
+                font-size: 1rem;
+            }
+
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header-nav">
+        <div class="nav-container">
+            <a href="index.html" class="back-btn">← Voltar ao Site</a>
+            <button class="translate-btn" onclick="translateContent()">
+                <span id="translateIcon">🌐</span>
+                <span id="translateText">Translate to English</span>
+            </button>
+        </div>
+    </div>
+
+    <img src="blog/WhatsApp Image 2026-01-13 at 11.25.59.jpeg" alt="Imagem de capa" class="hero-image">
+
+    <div class="post-header">
+        <h1 class="post-title" id="title">Arroz, feijão, moela e amor</h1>
+    </div>
+
+    <div class="post-content" id="content">
+        <p><br>Há comidas que alimentam o corpo.
+E há aquelas que alimentam a história.</p>
+
+        <p>O arroz soltinho, o feijão encorpado, a moela cozida devagar — não por técnica, mas por cuidado. Tudo começa cedo, com o fogo baixo, a panela pesada e o tempo respeitado. Aqui, cozinhar não é pressa. É presença.</p>
+
+
+        <p>A moela de galinha, tão simples e tão profunda, carrega o sabor de quem aprendeu que amor também se prova em silêncio. Ela borbulha enquanto a conversa corre solta, enquanto risadas escapam da sala, enquanto alguém passa pela cozinha só para “ver como está”. Nunca é só ver. É pertencer.</p>
+
+        <p>Esse prato não pede luxo. Ele pede mesa cheia.
+Pede gente sentada perto, colher compartilhada, histórias repetidas e ouvidas como se fossem novas. Pede intimidade.</p>
+
+
+        <p>É comida de casa cheia, de família unida, de quem sabe que afeto não se explica — se serve. E se repete. Sempre que possível.</p>
+
+        <p>Arroz, feijão, moela e amor.
+Porque tem coisas que não mudam.
+E ainda bem.</p>
+
+
+    </div>
+
+    <script>
+        let isEnglish = false;
+
+        const translations = {
+            pt: {
+                title: "Arroz, feijão, moela e amor",
+                content: `<p>Há comidas que alimentam o corpo.
+E há aquelas que alimentam a história.</p>
+
+        <p>O arroz soltinho, o feijão encorpado, a moela cozida devagar — não por técnica, mas por cuidado. Tudo começa cedo, com o fogo baixo, a panela pesada e o tempo respeitado. Aqui, cozinhar não é pressa. É presença.</p>
+
+
+        <p>A moela de galinha, tão simples e tão profunda, carrega o sabor de quem aprendeu que amor também se prova em silêncio. Ela borbulha enquanto a conversa corre solta, enquanto risadas escapam da sala, enquanto alguém passa pela cozinha só para “ver como está”. Nunca é só ver. É pertencer.</p>
+
+        <p>Esse prato não pede luxo. Ele pede mesa cheia.
+Pede gente sentada perto, colher compartilhada, histórias repetidas e ouvidas como se fossem novas. Pede intimidade.</p>
+
+
+        <p>É comida de casa cheia, de família unida, de quem sabe que afeto não se explica — se serve. E se repete. Sempre que possível.</p>
+
+        <p>Arroz, feijão, moela e amor.
+Porque tem coisas que não mudam.
+E ainda bem.</p>
+
+    `
+            },
+            en: {
+                title: "Rice, beans, traditional Brazilian chicken gizzards, and love",
+                content: `<p>Some foods feed the body.
+Others feed the story.</p>
+
+        <p>Fluffy rice, hearty beans, chicken gizzards slowly simmered — not by technique, but by care. Everything begins early, with low heat, a heavy pot, and time being respected. Here, cooking is never rushed. It is presence.</p>
+
+
+        <p>Chicken gizzards, so humble and so profound, carry the flavor of those who learned that love can also be tasted in silence. They bubble gently while conversations flow, while laughter spills from the living room, while someone walks into the kitchen just to “check on things.” It’s never just checking. It’s belonging.</p>
+
+        <p>This dish doesn’t ask for luxury. It asks for a full table.
+It asks for people sitting close, shared spoons, repeated stories heard as if they were new. It asks for intimacy.</p>
+
+
+
+        <p>It is food for a full house, for close families, for those who understand that affection doesn’t need explanation — it is served. And served again. Whenever possible.</p>
+
+        <p>Rice, beans, chicken gizzards, and love.
+Because some things should never change.
+And thankfully, they don’t.</p>
+
+        `
+            }
+        };
+
+        function translateContent() {
+            isEnglish = !isEnglish;
+            const lang = isEnglish ? 'en' : 'pt';
+            
+            document.getElementById('title').textContent = translations[lang].title;
+            document.getElementById('content').innerHTML = translations[lang].content;
+            document.getElementById('translateText').textContent = isEnglish ? 'Traduzir para Português' : 'Translate to English';
+        }
+    </script>
+</body>
+</html>
