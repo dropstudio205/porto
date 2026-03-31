@@ -3,14 +3,42 @@
 <head>
     <link rel="icon" type="image/png" href="fav/fav.png">
     <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17936349705"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18025068618"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'AW-17936349705');
+  gtag('config', 'AW-18025068618');
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LodgingBusiness",
+  "name": "Porto Betarello Refúgios",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Palhoça",
+    "addressRegion": "SC",
+    "addressCountry": "BR"
+  },
+  "url": "https://www.portobetarello.com"
+}
+</script>
+<meta name="description" content="Alugue casas e refúgios exclusivos em Palhoça SC. Experiência estilo Airbnb, conforto e praticidade para sua estadia. Veja disponibilidade agora.">
+<meta name="description" content="Alugue casas e refúgios exclusivos em Palhoça SC. Experiência estilo Airbnb, conforto e praticidade para sua estadia.">
+
+<meta name="keywords" content="airbnb palhoça, casa temporada palhoça, aluguel temporada sc, refúgio floripa, onde ficar palhoça, airbnb floripa, airbnb florianópolis, airbnb amparo, airbnb amparo interior, airbnb interior de são paulo, casa de temporada floripa, casa de temporada florianópolis, casa para nômades, refúgio para nômades, refúgio para nômades digitais, airbnb para nômades, airbnb para nômades digitais, casa para alugar de temporada, apartamento de temporada, apartamento airbnb, apartamento em palhoça, apartamento para alugar em palhoça, apartamento de airbnb para alugar em palhoça, morar fácil em palhoça, morar fácil em santa catarina, aluguel palhoça">
+
+<meta name="robots" content="index, follow">
+
+<meta name="author" content="Porto Betarello">
+
+<meta property="og:title" content="Casas para alugar em Palhoça SC | Refúgios estilo Airbnb">
+<meta property="og:description" content="Refúgios exclusivos para temporada em Santa Catarina. Reserve direto pelo Airbnb.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.portobetarello.com">
+<meta property="og:image" content="https://www.portobetarello.com/refugios">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -80,6 +108,230 @@
         .instagram-card .contact-btn-icon i { color: #E4405F; }
         .contact-btn-card h3 { font-family: var(--font-heading); font-size: 22px; font-weight: 600; color: var(--azul-profundo); margin-bottom: 12px; }
         .contact-btn-card p { font-size: 15px; font-weight: 300; color: #555; line-height: 1.6; }
+
+        /* ===== LEAD FORM SECTION ===== */
+        .lead-form-section {
+            padding: 100px 20px;
+            background: linear-gradient(135deg, var(--azul-profundo) 0%, #0012b8 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .lead-form-section::before {
+            content: '';
+            position: absolute;
+            top: -80px; right: -80px;
+            width: 400px; height: 400px;
+            border-radius: 50%;
+            background: rgba(245,204,0,0.07);
+            pointer-events: none;
+        }
+        .lead-form-section::after {
+            content: '';
+            position: absolute;
+            bottom: -100px; left: -60px;
+            width: 300px; height: 300px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.04);
+            pointer-events: none;
+        }
+        .lead-form-inner {
+            max-width: 680px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        .lead-form-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .lead-form-header .hero-line {
+            background: linear-gradient(90deg, #d8a900, var(--dourado-claro));
+        }
+        .lead-form-header h2 {
+            font-family: var(--font-heading);
+            font-size: clamp(32px, 5vw, 44px);
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 14px;
+            line-height: 1.2;
+        }
+        .lead-form-header p {
+            font-size: 16px;
+            font-weight: 300;
+            color: rgba(255,255,255,0.8);
+            line-height: 1.7;
+        }
+        .lead-form-box {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 20px;
+            padding: 48px 44px;
+            backdrop-filter: blur(10px);
+        }
+        .lead-form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .lead-form-field {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .lead-form-field.full {
+            grid-column: 1 / -1;
+        }
+        .lead-form-field label {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--dourado-claro);
+        }
+        .lead-form-field input,
+        .lead-form-field textarea {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.18);
+            border-radius: 10px;
+            padding: 14px 18px;
+            font-family: var(--font-body);
+            font-size: 15px;
+            font-weight: 300;
+            color: #fff;
+            outline: none;
+            transition: border-color 0.25s, background 0.25s;
+            resize: none;
+        }
+        .lead-form-field input::placeholder,
+        .lead-form-field textarea::placeholder {
+            color: rgba(255,255,255,0.35);
+        }
+        .lead-form-field input:focus,
+        .lead-form-field textarea:focus {
+            border-color: var(--dourado-claro);
+            background: rgba(255,255,255,0.12);
+        }
+        .lead-form-field textarea {
+            height: 130px;
+        }
+        .lead-form-submit {
+            margin-top: 28px;
+            width: 100%;
+            padding: 18px 32px;
+            background: var(--dourado-claro);
+            color: var(--azul-profundo);
+            border: none;
+            border-radius: 10px;
+            font-family: var(--font-body);
+            font-size: 15px;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
+            box-shadow: 0 8px 24px rgba(245,204,0,0.25);
+        }
+        .lead-form-submit:hover {
+            background: #ffe033;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(245,204,0,0.35);
+        }
+        .lead-form-submit:active {
+            transform: translateY(0);
+        }
+        .lead-form-note {
+            text-align: center;
+            margin-top: 18px;
+            font-size: 13px;
+            color: rgba(255,255,255,0.45);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+ 
+        /* ===== SUCCESS POPUP ===== */
+        .popup-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.55);
+            backdrop-filter: blur(4px);
+            z-index: 99999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            padding: 20px;
+        }
+        .popup-overlay.visible {
+            opacity: 1;
+            pointer-events: all;
+        }
+        .popup-card {
+            background: white;
+            border-radius: 20px;
+            padding: 48px 40px;
+            max-width: 420px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.2);
+            transform: scale(0.9) translateY(20px);
+            transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .popup-overlay.visible .popup-card {
+            transform: scale(1) translateY(0);
+        }
+        .popup-icon {
+            width: 72px;
+            height: 72px;
+            background: linear-gradient(135deg, #25d366, #1ab954);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            box-shadow: 0 10px 30px rgba(37,211,102,0.3);
+        }
+        .popup-icon i {
+            font-size: 32px;
+            color: white;
+        }
+        .popup-card h3 {
+            font-family: var(--font-heading);
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--azul-profundo);
+            margin-bottom: 12px;
+        }
+        .popup-card p {
+            font-size: 15px;
+            font-weight: 300;
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 30px;
+        }
+        .popup-close-btn {
+            background: var(--azul-profundo);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 14px 36px;
+            font-family: var(--font-body);
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+        }
+        .popup-close-btn:hover {
+            background: #0012b8;
+            transform: translateY(-1px);
+        }
 
         /* FAQ Section */
         .faq-section { padding: 100px 20px; background: #f8f8f8; }
@@ -230,6 +482,53 @@
         </div>
     </section>
 
+        <!-- ===== LEAD FORM SECTION ===== -->
+    <section class="lead-form-section">
+        <div class="lead-form-inner">
+            <div class="lead-form-header">
+                <span class="hero-line"></span>
+                <h2 data-pt="Envie uma Mensagem" data-en="Send a Message">Envie uma Mensagem</h2>
+                <p data-pt="Preencha o formulário abaixo e entraremos em contato pelo WhatsApp o mais breve possível." data-en="Fill in the form below and we'll get back to you on WhatsApp as soon as possible.">Preencha o formulário abaixo e entraremos em contato pelo WhatsApp o mais breve possível.</p>
+            </div>
+            <div class="lead-form-box">
+                <div class="lead-form-row">
+                    <div class="lead-form-field">
+                        <label data-pt="Seu nome" data-en="Your name">Seu nome</label>
+                        <input type="text" id="lead-name" placeholder="Ex: João Silva" autocomplete="off">
+                    </div>
+                    <div class="lead-form-field">
+                        <label data-pt="Seu telefone" data-en="Your phone">Seu telefone</label>
+                        <input type="tel" id="lead-phone" placeholder="(00) 9 0000-0000" autocomplete="off">
+                    </div>
+                </div>
+                <div class="lead-form-field full" style="margin-bottom: 0;">
+                    <label data-pt="Sua mensagem" data-en="Your message">Sua mensagem</label>
+                    <textarea id="lead-message" placeholder="Olá! Gostaria de saber mais sobre disponibilidade para..."></textarea>
+                </div>
+                <button class="lead-form-submit" id="lead-submit-btn" onclick="sendLeadToWhatsApp()">
+                    <i class="fab fa-whatsapp"></i>
+                    <span data-pt="Enviar pelo WhatsApp" data-en="Send via WhatsApp">Enviar pelo WhatsApp</span>
+                </button>
+                <p class="lead-form-note">
+                    <i class="fas fa-lock" style="font-size:11px;"></i>
+                    <span data-pt="Seus dados são usados apenas para responder sua mensagem." data-en="Your data is only used to reply to your message.">Seus dados são usados apenas para responder sua mensagem.</span>
+                </p>
+            </div>
+        </div>
+    </section>
+ 
+    <!-- ===== SUCCESS POPUP ===== -->
+    <div class="popup-overlay" id="successPopup">
+        <div class="popup-card">
+            <div class="popup-icon">
+                <i class="fas fa-check"></i>
+            </div>
+            <h3 data-pt="Mensagem Enviada!" data-en="Message Sent!">Mensagem Enviada!</h3>
+            <p data-pt="Obrigado pelo contato! Você será redirecionado ao WhatsApp agora. Entraremos em contato assim que possível." data-en="Thank you for reaching out! You'll be redirected to WhatsApp now. We'll get back to you as soon as possible.">Obrigado pelo contato! Você será redirecionado ao WhatsApp agora. Entraremos em contato assim que possível.</p>
+            <button class="popup-close-btn" onclick="closePopup()" data-pt="Fechar" data-en="Close">Fechar</button>
+        </div>
+    </div>
+
     <section class="faq-section">
         <div class="container">
             <div class="faq-header">
@@ -354,7 +653,7 @@ Via fechadura eletrônica para sua flexibilidade e segurança</div>
 
     <script>
         let currentLang = 'pt';
-
+ 
         function changeLanguage(lang) {
             currentLang = lang;
             localStorage.setItem('preferredLanguage', lang);
@@ -369,34 +668,34 @@ Via fechadura eletrônica para sua flexibilidade e segurança</div>
                     }
                 }
             });
-
+ 
             document.querySelectorAll('.lang-option').forEach(btn => {
                 btn.classList.remove('active');
                 if (btn.getAttribute('data-lang') === lang) {
                     btn.classList.add('active');
                 }
             });
-
+ 
             const slider = document.querySelector('.lang-slider');
             if (lang === 'en') {
                 slider.classList.add('slide-right');
             } else {
                 slider.classList.remove('slide-right');
             }
-
+ 
             document.documentElement.setAttribute('lang', lang === 'pt' ? 'pt-BR' : 'en');
         }
-
+ 
         function initLanguage() {
             const savedLang = localStorage.getItem('preferredLanguage') || 'pt';
             changeLanguage(savedLang);
         }
-
+ 
         function toggleMobileMenu() {
             const menu = document.getElementById('mobileMenu');
             menu.classList.toggle('active');
         }
-
+ 
         // FAQ Toggle
         function toggleFAQ(item) {
             const wasActive = item.classList.contains('active');
@@ -411,25 +710,67 @@ Via fechadura eletrônica para sua flexibilidade e segurança</div>
                 item.classList.add('active');
             }
         }
-
+ 
+        // ===== LEAD FORM LOGIC =====
+        function sendLeadToWhatsApp() {
+            const name    = document.getElementById('lead-name').value.trim();
+            const phone   = document.getElementById('lead-phone').value.trim();
+            const message = document.getElementById('lead-message').value.trim();
+ 
+            if (!name || !phone || !message) {
+                const alertMsg = currentLang === 'pt'
+                    ? 'Por favor, preencha todos os campos antes de enviar.'
+                    : 'Please fill in all fields before sending.';
+                alert(alertMsg);
+                return;
+            }
+ 
+            const waNumber = '12163370184';
+            const text = `Olá! Sou ${name}.\n📱 Telefone: ${phone}\n\n${message}`;
+            const waUrl = `https://wa.me/${waNumber}?text=${encodeURIComponent(text)}`;
+ 
+            // Show popup
+            document.getElementById('successPopup').classList.add('visible');
+ 
+            // Open WhatsApp after a brief delay so user sees the popup
+            setTimeout(() => {
+                window.open(waUrl, '_blank');
+            }, 800);
+ 
+            // Clear form
+            document.getElementById('lead-name').value = '';
+            document.getElementById('lead-phone').value = '';
+            document.getElementById('lead-message').value = '';
+        }
+ 
+        function closePopup() {
+            document.getElementById('successPopup').classList.remove('visible');
+        }
+ 
+        // Close popup clicking outside
+        document.addEventListener('click', function(e) {
+            const popup = document.getElementById('successPopup');
+            if (e.target === popup) closePopup();
+        });
+ 
         document.addEventListener('DOMContentLoaded', function() {
             initLanguage();
-
+ 
             document.querySelectorAll('.lang-option').forEach(btn => {
                 btn.addEventListener('click', () => {
                     const lang = btn.getAttribute('data-lang');
                     changeLanguage(lang);
                 });
             });
-
+ 
             document.getElementById('menuToggle').addEventListener('click', toggleMobileMenu);
-
+ 
             document.querySelectorAll('.mobile-nav a').forEach(link => {
                 link.addEventListener('click', () => {
                     document.getElementById('mobileMenu').classList.remove('active');
                 });
             });
-
+ 
             // FAQ functionality
             document.querySelectorAll('.faq-question').forEach(question => {
                 question.addEventListener('click', function() {
@@ -437,7 +778,7 @@ Via fechadura eletrônica para sua flexibilidade e segurança</div>
                     toggleFAQ(faqItem);
                 });
             });
-
+ 
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function(e) {
                     e.preventDefault();
